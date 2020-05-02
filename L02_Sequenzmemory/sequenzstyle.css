@@ -1,0 +1,58 @@
+body{
+    position:absolute;
+}
+
+h1{
+    position:relative;
+    left:600px;
+}
+
+div#memory1{
+   position: relative;
+   top:20px;
+
+}
+
+div#memory2{
+    position: relative;
+    top:50px;
+ 
+ }
+ 
+ div#memory3{
+    position: relative;
+    top:80px;
+ 
+ }
+
+ div#words{
+     position:relative;
+     top:90px;
+ }
+ 
+button#start {
+    position:relative;
+    left:1380px;
+    bottom:400px;
+
+}
+
+div#memoryfield {
+position: absolute;
+border:thin solid black;
+text-align:center;
+top:40px;
+margin: 120px;
+width:1000px;
+height:500px;
+left:150px;
+
+}
+
+p#tipp{
+    position: relative;;
+top:120px;
+left:540px;
+padding:20px;
+
+}

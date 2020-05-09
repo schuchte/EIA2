@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='househelp.css'>
+    <script src='househelp.js'></script>
+</head>
+<body>
+<h1>Home Help</h1>
+<p>You belong to the group most of risk relating to Corona Virus and need help? 
+    Then just fill out this document and publish it. This way, potential helpers can contact you directly.</p>
+
+<form id="myform">
+<div id="tasks">
+<h2 id="choosing">Choose here</h2>
+
+<fieldset>
+<legend>shopping</legend>
+<input type="text" name="shopping" list="food" placeholder="what do you need?">
+<datalist id="food">
+<option value="butter" price="1.50">Butter</option>
+<option value="milk" price="1.20">Milk</option>
+<option value="coffee" price="3.50">Coffee</option>
+<option value="cheese" price="1.80">Cheese</option>
+<option value="bread" price="2.70">Bread</option>
+<option value="pasta" price="1.10">Pasta</option>
+<option value="apple" price="0.80">Apple</option>
+</datalist>
+
+<select name="shopping" id="amount">
+<datalist id="amount">
+<option value="" price="0.5">0.5</option>
+<option value="" price="1">1</option>
+<option value="" price="1.5">1.5</option>
+<option value="" price="2">2</option>
+<option value="" price="2.5">2.5</option>
+<option value="" price="3">3</option>
+</select>
+
+<select name="shopping" id="unit">
+<option value="gram" price="0.5">gram</option>
+<option value="kilogram" price="1.5">kilogram</option>
+<option value="milliliter" price="0.5">milliliter</option>
+<option value="liter" price="1.5">liter</option>
+</select>
+
+<select name="shopping" id="supermarket">
+<option value="Aldi">Aldi</option>
+<option value="Rewe">Rewe</option>
+<option value="Market">market</option>
+<option value="Edeka">Edeka</option>
+<option value="Lidl">Lidl</option>
+</select>
+</fieldset>
+
+<fieldset>
+<legend>household</legend>
+<input type="checkbox" name="household" id="mow" value="mow the lawn" price="10">
+<label for="mow">mow the lawn</label></br>
+<input type="checkbox" name="household" id="cook" value="cook a dish" price="15">
+<label for="cook">cook a dish</label></br>
+<input type="checkbox" name="household" id="feed" value="feed the cat/dog" price="5">
+<label for="feed">feed the cat/dog</label></br>
+<input type="checkbox" name="household" id="clean" value="clean the house" price="25">
+<label for="clean">clean the house</label></br>
+</fieldset>
+
+<fieldset>
+<legend>money</legend>
+<input type="radio" name="money" id="submit" value="Submit money" price="">
+<label for="submit">submit money</label>
+<input type="radio" name="money" id="get" value="Get money">
+<label for="get">get money</label>
+<select name="money" id="Payment">
+<option value="PayPal">Paypal</option>
+<option value="Creditcard">Creditcard</option>
+<option value="bank collection">bank collection</option>
+<option value="SEPA">SEPA</option>
+<option value="DIRECTeBanking">DIRECTeBanking</option>
+</select>
+</br>
+<span id="slider">
+<span>
+    0€
+    <input type="range" name="money" id="mass" min="0" max="500" step="10">
+    500€
+</span>
+<progress for="mass" max="500" value=""></progress>
+</span>
+</fieldset>
+
+</div>
+</form> 
+
+<div id="right">
+    <h2 id="bill">Your Input/ Costs</h2>
+<div id="order">...</div>
+</div>
+
+<button id="publish">Submit Data</button>
+
+</body>
+</html>

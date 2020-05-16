@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='househelp.css'>
+    <script src='HouseData.js'></script>
+    <script src='HouseContent.js'></script>
+    <script src='househelp.js'></script>
+
+</head>
+<body>
+<h1>Home Help</h1>
+<p>You belong to the group most of risk relating to Corona Virus and need help? 
+    Then just fill out this document and publish it. This way, potential helpers can contact you directly.</p>
+
+<form id="myform">
+<div id="tasks">
+<h2 id="choosing">Choose here</h2>
+
+<fieldset name="Shopping" id="Shopping">
+<legend>shopping</legend>
+</fieldset>
+
+<fieldset name="Household" id="Household">
+<legend>household</legend>
+</fieldset>
+
+<fieldset name="Money" id="Money">
+<legend>money</legend>
+<span id="slider">
+<span>
+    0€
+    <input  type="range" name="Money" id="mass" min="0" max="500" step="50" price="0">
+    500€
+</span>
+<progress for="mass" min="0" max="500" value="" price="0"></progress>
+</span>
+</fieldset>
+
+</div>
+</form> 
+
+<div id="right">
+    <h2 id="bill">Your Input/ Costs</h2>
+<div id="order">...</div>
+</div>
+
+<button type="button" id="publish">Submit Data</button>
+<button type="button" id="delete">Delete Data</button>
+
+</body>
+</html>

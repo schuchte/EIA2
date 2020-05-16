@@ -1,0 +1,99 @@
+body{
+    position:absolute;
+    background-color: rgb(138, 138, 179);
+}
+
+p{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:18px;
+}
+
+fieldset{
+    margin-right: 400px;
+    padding:20px;
+    width: 600px;
+}
+
+div#order {
+    width: 400px;
+    height: 480px;
+    border-style: solid;
+    position: absolute;
+    top: 183px; 
+    right: 30px;
+    background-color: whitesmoke;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+div#tasks {
+    position: absolute;
+    border:solid black;
+    right: 600px;
+    padding-bottom: 177px;
+    padding-left: 50px;
+    height: 308px;
+    width: 850px;
+    background-color:whitesmoke;
+    top:183px;
+}
+
+h2#bill{
+    left:1200px;
+    position: absolute;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    top:110px;
+}
+
+button#publish {
+    position: relative;
+    left:1100px;
+    top:470px;
+    border-radius:20px;
+    width: 100px;
+    height:42px;
+    font-size:14px;
+}
+
+button#delete {
+    position: relative;
+    left:1260px;
+    top:470px;
+    border-radius:20px;
+    width: 100px;
+    height:42px;
+    font-size:14px;
+}
+
+h2#choosing {
+    position: relative;
+    bottom:80px;
+    left:30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+select {
+    position: relative;
+    width:130px;
+    left:60px;
+
+}
+
+button#okay {
+    position: relative;
+    width:40px;
+    height: 30px;
+    left:540px;
+}
+
+select.Shopart {
+
+position: relative;
+left:450px;
+top:20px;
+
+}

@@ -8,10 +8,10 @@ var L05_Househelp;
         let offer = await response.text(); //text() liefert mir nicht direkt einen string, sondern nur die Promise einen string zu liefern, wenn sie die Daten hat (solage warten ->await)
         let data = JSON.parse(offer); //JSON.prse wandelt den offer- string in ein Objekt um
         L05_Househelp.generateContent(data);
-        let form = document.querySelector("form");
+        form = document.querySelector("form");
         let slider = document.querySelector("input#mass");
         let submitbutton = document.querySelector("button[type=button]");
-        let resetbutton = document.querySelector("button[type=reset");
+        let resetbutton = document.querySelector("button[type=reset]");
         form.addEventListener("change", handleChange);
         slider.addEventListener("input", displayMass);
         resetbutton.addEventListener("click", deleteData);
@@ -36,7 +36,7 @@ var L05_Househelp;
         let price = 0;
         let order = document.querySelector("div#order");
         order.innerHTML = "";
-        let formData = new FormData(document.querySelector("form"));
+        let formData = new FormData(form);
         for (let entry of formData) {
             console.log("YEAY");
             let item = document.querySelector("[value='" + entry[1] + "']");

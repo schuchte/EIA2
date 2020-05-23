@@ -13,10 +13,10 @@ namespace L05_Househelp {
 
         generateContent(data);
 
-        let form: HTMLFormElement = <HTMLFormElement>document.querySelector("form");
+        form = <HTMLFormElement>document.querySelector("form");
         let slider: HTMLInputElement = <HTMLInputElement>document.querySelector("input#mass");
         let submitbutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button[type=button]");
-        let resetbutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button[type=reset");
+        let resetbutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button[type=reset]");
     
         
         form.addEventListener("change", handleChange);
@@ -55,7 +55,7 @@ namespace L05_Househelp {
     let order: HTMLDivElement = <HTMLDivElement>document.querySelector("div#order");
     order.innerHTML = "";
  
-    let formData: FormData = new FormData(<HTMLFormElement>document.querySelector("form"));
+    let formData: FormData = new FormData(form);
 
   
     for (let entry of formData) {

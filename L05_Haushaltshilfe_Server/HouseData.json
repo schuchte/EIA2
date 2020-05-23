@@ -1,0 +1,40 @@
+{
+        "Money": [
+            { "name": "PayPal", "price": 0.00},
+            { "name": "Creditcard", "price": 0.00},
+            { "name": "bank collection", "price": 0.00},
+            { "name": "DIRECTeBanking", "price": 0.00},
+            { "name": "SEPA", "price": 0.00}
+
+        ],
+
+        "Shopping": [
+            { "name": "Butter", "price": 1.50 },
+            { "name": "Milk", "price": 1.20 },
+            { "name": "Coffee", "price": 3.50 },
+            { "name": "Cheese", "price": 1.80 },
+            { "name": "Bread", "price": 2.70 },
+            { "name": "Pasta", "price": 1.10 },
+            { "name": "Apple", "price": 0.80 }
+
+        ],
+
+        "Shop": [
+
+            { "name": "Aldi", "price": 0.00 },
+            { "name": "Rewe", "price": 0.00 },
+            { "name": "Lidl", "price": 0.00 },
+            { "name": "Kaufland", "price": 0.00 },
+            { "name": "Edeka", "price": 0.00 },
+            { "name": "Market", "price": 0.00 }
+        ],
+
+
+        "Household": [
+            { "name": "mow the lawn", "price": 10.00 },
+            { "name": "cook a dish", "price": 15.00 },
+            { "name": "feed the cat/dog", "price": 5.00 },
+            { "name": "clean the house", "price": 25.00 }
+        ]
+
+}

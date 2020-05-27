@@ -1,12 +1,11 @@
 {
   "name": "cocktailbarl03",
   "version": "1.0.0",
-  "description": "",
+  "description": "EIA2",
   "main": "CocktailBar.js",
   "scripts": {
-    "start": "C:/Users/Tanja/Desktop/Uni Stuff/EIA 2/Übungsmaterial EIA2/CocktailbarL03/Server.ts",
-    "start": "node server.js"
+    "start": "node L06_Cocktailbar/Server.js"
   },
-  "author": "",
+  "author": "Tanja",
   "license": "ISC"
 }

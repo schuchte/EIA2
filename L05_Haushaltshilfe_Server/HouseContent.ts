@@ -10,6 +10,7 @@ namespace L05_Househelp {
     }
 
     export let data: Data;
+    
     export function generateContent(_data: Data): void {
 
         for (let category in _data) {

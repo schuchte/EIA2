@@ -3,6 +3,7 @@ var L05_Househelp;
 (function (L05_Househelp) {
     window.addEventListener("load", handleLoad);
     let form;
+    let url = "https://fliegendesmonster.herokuapp.com";
     async function handleLoad(_event) {
         let response = await fetch("HouseData.json"); //(await) warten bis fetch die Daten von HouseData.json hat
         let offer = await response.text(); //text() liefert mir nicht direkt einen string, sondern nur die Promise einen string zu liefern, wenn sie die Daten hat (solage warten ->await)
@@ -22,8 +23,9 @@ var L05_Househelp;
         console.log("DATA SENT");
         let formData = new FormData(form);
         let query = new URLSearchParams(formData);
-        await fetch("newhousehelp.html?" + query.toString());
-        alert("your Tasks have been published!");
+        let response = await fetch(url + "?" + query.toString());
+        let responseText = await response.text();
+        alert("" + responseText);
     }
     function deleteData() {
         let order = document.querySelector("div#order");

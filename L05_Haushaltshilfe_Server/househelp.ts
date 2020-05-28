@@ -4,6 +4,8 @@ namespace L05_Househelp {
     window.addEventListener("load", handleLoad);
     let form: HTMLFormElement;
 
+    let url: string = "https://fliegendesmonster.herokuapp.com";
+
 
     async function handleLoad(_event: Event): Promise<void> {
 
@@ -32,8 +34,9 @@ namespace L05_Househelp {
        console.log("DATA SENT");
        let formData: FormData = new FormData(form);
        let query: URLSearchParams = new URLSearchParams(<any>formData);
-       await fetch("newhousehelp.html?" + query.toString());
-       alert("your Tasks have been published!");
+       let response: Response = await fetch(url + "?" + query.toString());
+       let responseText: string = await response.text();
+       alert("" + responseText);
    }
 
 

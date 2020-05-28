@@ -17,7 +17,7 @@
     Then just fill out this document and publish it. This way, potential helpers can contact you directly.</p>
 </header>
 
-<form id="orderForm" method="GET" action="">
+<form id="orderform" method="GET" action="">
 <div>
 
 <h2 id="choosing">Choose here</h2>
@@ -38,9 +38,10 @@
     <input  type="range" name="Slider" id="mass" min="0" max="500" step="50" price="0">
     500€
 </span>
-<progress for="mass" min="0" max="500" value="" price="0"></progress>
+<progress for="mass" min="0" max="500" value=""></progress>
 </span></br>
 </fieldset>
+
 
 </div>
 </form> 
@@ -49,9 +50,8 @@
     <h2 id="bill">Your Input/ Costs</h2>
 <div id="order">...</div>
 </div>
-
-<button type="button" id="publish" form="orderForm">Submit Data</button>
-<button type="reset" id="reset" form="orderForm">Reset Data</button>
+<button type="button" id="publish" form="orderform">Submit Data</button>
+<button type="reset" id="reset" form="orderform">Reset Data</button>
 
 </body>
 </html>

@@ -25,7 +25,7 @@ var L05_Househelp;
         let query = new URLSearchParams(formData);
         let response = await fetch(url + "?" + query.toString());
         let responseText = await response.text();
-        alert("" + responseText);
+        alert("Your tasks have been published!" + "\n" + "\n" + "Your Input" + ":" + "\n" + responseText);
     }
     function deleteData() {
         let order = document.querySelector("div#order");

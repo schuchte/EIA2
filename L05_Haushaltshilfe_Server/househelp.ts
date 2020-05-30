@@ -36,7 +36,7 @@ namespace L05_Househelp {
        let query: URLSearchParams = new URLSearchParams(<any>formData);
        let response: Response = await fetch(url + "?" + query.toString());
        let responseText: string = await response.text();
-       alert("" + responseText);
+       alert("Your tasks have been published!" + "\n" + "\n" + "Your Input" + ":" + "\n" + responseText);
    }
 
 

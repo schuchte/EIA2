@@ -1,11 +1,12 @@
-namespace L05_Househelp {
+namespace L07_Househelp {
 
     
     window.addEventListener("load", handleLoad);
     let form: HTMLFormElement;
 
-    let url: string = "https://fliegendesmonster.herokuapp.com";
+    let url: string = "http://localhost:5001";
 
+    //https://fliegendesmonster.herokuapp.com"
 
     async function handleLoad(_event: Event): Promise<void> {
 

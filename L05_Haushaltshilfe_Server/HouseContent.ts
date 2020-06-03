@@ -1,4 +1,4 @@
-namespace L05_Househelp {
+namespace L07_Househelp {
 
     export interface Item {
         name: string;

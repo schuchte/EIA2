@@ -1,6 +1,6 @@
 "use strict";
-var L05_Househelp;
-(function (L05_Househelp) {
+var L07_Househelp;
+(function (L07_Househelp) {
     function generateContent(_data) {
         for (let category in _data) {
             let items = _data[category];
@@ -23,7 +23,7 @@ var L05_Househelp;
                 fieldset.appendChild(group);
         }
     }
-    L05_Househelp.generateContent = generateContent;
+    L07_Househelp.generateContent = generateContent;
     function createHouse(_items, _category) {
         let group = document.createElement("span");
         for (let item of _items) {
@@ -76,5 +76,5 @@ var L05_Househelp;
         }
         return group;
     }
-})(L05_Househelp || (L05_Househelp = {}));
+})(L07_Househelp || (L07_Househelp = {}));
 //# sourceMappingURL=HouseContent.js.map

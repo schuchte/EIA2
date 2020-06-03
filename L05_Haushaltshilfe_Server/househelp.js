@@ -1,14 +1,15 @@
 "use strict";
-var L05_Househelp;
-(function (L05_Househelp) {
+var L07_Househelp;
+(function (L07_Househelp) {
     window.addEventListener("load", handleLoad);
     let form;
-    let url = "https://fliegendesmonster.herokuapp.com";
+    let url = "http://localhost:5001";
+    //https://fliegendesmonster.herokuapp.com"
     async function handleLoad(_event) {
         let response = await fetch("HouseData.json"); //(await) warten bis fetch die Daten von HouseData.json hat
         let offer = await response.text(); //text() liefert mir nicht direkt einen string, sondern nur die Promise einen string zu liefern, wenn sie die Daten hat (solage warten ->await)
         let data = JSON.parse(offer); //JSON.prse wandelt den offer- string in ein Objekt um
-        L05_Househelp.generateContent(data);
+        L07_Househelp.generateContent(data);
         form = document.querySelector("form");
         let slider = document.querySelector("input#mass");
         let submitbutton = document.querySelector("button[type=button]");
@@ -65,5 +66,5 @@ var L05_Househelp;
         let amount = _event.target.value;
         progress.value = parseFloat(amount);
     }
-})(L05_Househelp || (L05_Househelp = {}));
+})(L07_Househelp || (L07_Househelp = {}));
 //# sourceMappingURL=househelp.js.map

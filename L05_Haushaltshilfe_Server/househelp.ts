@@ -4,7 +4,7 @@ namespace L07_Househelp {
     window.addEventListener("load", handleLoad);
     let form: HTMLFormElement;
 
-    let url: string = "http://localhost:5001";
+    let url: string = "https://fliegendesmonster.herokuapp.com";
 
     //https://fliegendesmonster.herokuapp.com"
 

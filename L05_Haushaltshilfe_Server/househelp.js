@@ -3,7 +3,7 @@ var L07_Househelp;
 (function (L07_Househelp) {
     window.addEventListener("load", handleLoad);
     let form;
-    let url = "http://localhost:5001";
+    let url = "https://fliegendesmonster.herokuapp.com";
     //https://fliegendesmonster.herokuapp.com"
     async function handleLoad(_event) {
         let response = await fetch("HouseData.json"); //(await) warten bis fetch die Daten von HouseData.json hat

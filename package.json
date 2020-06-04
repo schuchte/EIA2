@@ -1,8 +1,8 @@
 {
   "name": "eia2",
   "version": "1.0.0",
-  "description": "EIA2",
-  "main": "CocktailBar.js",
+  "description": "",
+  "main": "",
   "scripts": {
     "start": "node L05_Haushaltshilfe_Server/Server.js"
   },

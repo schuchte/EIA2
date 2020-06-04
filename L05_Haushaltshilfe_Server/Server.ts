@@ -13,9 +13,9 @@ export namespace L07_Househelp {
     if (port == undefined)
         port = 5001;
 
-    let databaseUrl: string = "mongodb+srv://Tata:<Amsterdam99>@eia2-9msb9.mongodb.net/test?retryWrites=true&w=majority";
+    let databaseUrl: string = "mongodb+srv://Tata:Amsterdam99@eia2-9msb9.mongodb.net/test?retryWrites=true&w=majority";
 
-    //mongodb+srv://Tata:<Amsterdam99>@eia2-9msb9.mongodb.net/test?retryWrites=true&w=majority
+    //mongodb+srv://Tata:Amsterdam99@eia2-9msb9.mongodb.net/test?retryWrites=true&w=majority
 
     startServer(port);
     connectToDatabase(databaseUrl);

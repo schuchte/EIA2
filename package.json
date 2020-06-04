@@ -1,11 +1,15 @@
 {
-  "name": "cocktailbarl03",
+  "name": "eia2",
   "version": "1.0.0",
   "description": "EIA2",
   "main": "CocktailBar.js",
   "scripts": {
-    "start": "node L06_Cocktailbar/Server.js"
+    "start": "node L05_Haushaltshilfe_Server/Server.js"
   },
   "author": "Tanja",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/mongodb": "^3.5.20",
+    "mongodb": "^3.5.8"
+  }
 }

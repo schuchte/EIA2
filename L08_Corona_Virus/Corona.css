@@ -1,5 +1,12 @@
 canvas{
-   position: absolute;
+   overflow: hidden;
    border:solid rgba(0, 0, 0, 0.390);
 }
-   
+    
+    canvas {
+        display: block;
+      width: 100vw;
+      height: 100vh;
+      
+    }
+  

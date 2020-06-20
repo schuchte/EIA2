@@ -1,0 +1,14 @@
+canvas{
+   overflow: hidden;
+   border:solid rgba(0, 0, 0, 0.390);
+}
+   
+   body {
+      margin:0;
+     
+    }
+    
+    canvas {
+        display: block;
+    }
+  

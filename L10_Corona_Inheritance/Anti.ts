@@ -1,7 +1,6 @@
-namespace L10_Corona {
+namespace L10_Corona  {
 
-
-    export class Particles extends Moveable {
+    export class AntiCell extends Moveable {
 
         type: number;
         size: number;
@@ -18,7 +17,7 @@ namespace L10_Corona {
 
 
             this.velocity = new Vector(0, 0);
-            this.velocity.set(0, -20);
+            this.velocity.random(5, 10);
         }
 
         move(_timeslice: number): void {
@@ -38,31 +37,29 @@ namespace L10_Corona {
 
         }
 
+
         draw(): void {
 
-            let radiusParticle: number = 1.8;
-            let particle: Path2D = new Path2D();
-            let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
-
-            particle.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
-            gradient.addColorStop(0, "HSL(0, 100%, 30%, 0.2)");
-            gradient.addColorStop(1, "HSL(0, 100%, 30%, 0.3)");
-
-
-            crc2.resetTransform();
-
-            crc2.translate(this.position.x, this.position.y);
-
-            crc2.fillStyle = gradient;
-
-            crc2.scale(this.size, this.size);
-
+            let AntiParticle: Path2D = new Path2D();
+           
+    
+            AntiParticle.moveTo(30, 200);
+            AntiParticle.lineTo(30, 180);
+            AntiParticle.lineTo(20, 165);
+            AntiParticle.moveTo(30, 180);
+            AntiParticle.lineTo(40, 165);
             
-            crc2.fill(particle);
+            AntiParticle.closePath();
+            crc2.resetTransform();
+            crc2.lineWidth = 3;
+            crc2.translate(this.position.x, this.position.y);
+            crc2.scale(this.size, this.size);
+         
+            crc2.stroke(AntiParticle);  
+            
             crc2.restore();
 
-        
-        }
+    
+    }
     }
 }
-

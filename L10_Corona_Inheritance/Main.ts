@@ -20,7 +20,7 @@ namespace L10_Corona {
 
         drawBackground(); //Hintergrund wird kreiert
         // createCorona(26); //Coronaviren werden kreiert (in der Klammer steht die Anzahl als Parameter)
-        window.setInterval(update, 25);  //die Funktion update wird alle 25 millisekunden aufgerufen
+        window.setInterval(update, 20);  //die Funktion update wird alle 25 millisekunden aufgerufen
         // createHuman(40); //Körperzelle wird kreiert (in der Klammer steht die Anzahl als Parameter)
         // createParticle(200); //Partikel wird kreirt (in der Klammer steht die Anzahl als Parameter)
         createCells();
@@ -32,8 +32,9 @@ namespace L10_Corona {
         crc2.resetTransform();
 
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
-        gradient.addColorStop(0, "peachpuff");
-        gradient.addColorStop(1, "seashell" );
+        gradient.addColorStop(0, "white");
+        gradient.addColorStop(0.5, "moccasin");
+        gradient.addColorStop(1, "crimson" );
 
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
@@ -43,8 +44,36 @@ namespace L10_Corona {
 
         let x: number;
         let y: number;
-        let nParticles: number = 50;
-        let nCells: number = 10;
+        let nParticles: number = 600;
+        let nCells: number = 40;
+        let nCorona: number = 20;
+        let nAnti: number = 30;
+        let nKiller: number = 30;
+
+
+        //KillerCells
+        for(let i: number = 0; i < nKiller; i++) {
+
+            x = (Math.random() * crc2.canvas.width);
+            y = (Math.random() * crc2.canvas.height);
+
+            let position: Vector = new Vector(x, y);
+            let killer: KillerCell = new KillerCell(position);
+            killer.draw();
+            cells.push(killer);
+        }
+
+        //AntiCells
+        for (let i: number = 0; i < nAnti; i++){
+
+            x = (Math.random() * crc2.canvas.width);
+            y = (Math.random() * crc2.canvas.height);
+
+            let position: Vector = new Vector(x, y);
+            let anti: AntiCell = new AntiCell(position);
+            anti.draw();
+            cells.push(anti);
+        }
 
          //Particles
         for (let i: number = 0; i < nParticles; i++) {
@@ -60,8 +89,8 @@ namespace L10_Corona {
 
         //HumanCells
         for (let i: number = 0; i < nCells; i++) {
-            x = (Math.random() * crc2.canvas.width);
-            y = (100 + Math.random() * crc2.canvas.height / 1.5);
+            x = (Math.random() * crc2.canvas.width); //x Abstand der Zellen
+            y = (100 + Math.random() * crc2.canvas.height); //y Abstand der Zellen
             let position: Vector = new Vector(x, y);
             let humancell: HumanCells = new HumanCells(position);
             humancell.draw();
@@ -69,9 +98,9 @@ namespace L10_Corona {
         }
 
           //coronaVirus
-        for (let i: number = 0; i < nCells; i++) {
+        for (let i: number = 0; i < nCorona; i++) {
             x = (Math.random() * crc2.canvas.width);
-            y = (100 + Math.random() * crc2.canvas.height / 1.5);
+            y = (100 + Math.random() * crc2.canvas.height);
 
             let position: Vector = new Vector(x, y);
             let corona: CoronaVirus = new CoronaVirus(position);
@@ -87,11 +116,15 @@ namespace L10_Corona {
     
             for (let Moveable of cells) {
                 if (Moveable instanceof CoronaVirus)
-                    Moveable.move(1 / 20); 
+                    Moveable.move(1 / 30); 
                 else if (Moveable instanceof HumanCells)
-                    Moveable.move(1 / 20); 
+                    Moveable.move(1 / 15); 
                 else if (Moveable instanceof Particles)
-                    Moveable.move (1 / 80 ); 
+                    Moveable.move (1 / 80 ); //Schnelligkeit --> timeslice, also 1 mal in 80 millisek.
+                else if (Moveable instanceof AntiCell)
+                    Moveable.move (1/ 30);
+                else if (Moveable instanceof KillerCell)
+                    Moveable.move(1/ 40);
                 Moveable.draw(); 
             }
 }

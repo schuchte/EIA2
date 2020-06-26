@@ -1,7 +1,7 @@
 namespace L10_Corona {
 
 
-    export class Particles extends Moveable {
+    export class KillerCell extends Moveable {
 
         type: number;
         size: number;
@@ -16,9 +16,8 @@ namespace L10_Corona {
 
             this.radius = 5;
 
-
             this.velocity = new Vector(0, 0);
-            this.velocity.set(0, -20);
+            this.velocity.random(5, 10);
         }
 
         move(_timeslice: number): void {
@@ -40,29 +39,25 @@ namespace L10_Corona {
 
         draw(): void {
 
-            let radiusParticle: number = 1.8;
-            let particle: Path2D = new Path2D();
+            let radiusParticle: number = 10;
+            let KillerParticle: Path2D = new Path2D();
             let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
-
-            particle.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
-            gradient.addColorStop(0, "HSL(0, 100%, 30%, 0.2)");
-            gradient.addColorStop(1, "HSL(0, 100%, 30%, 0.3)");
-
+    
+            KillerParticle.ellipse(0, 0, 15, 5, 0, 0, 2 * Math.PI);
+            gradient.addColorStop(0, "white");
+            gradient.addColorStop(1, "purple");
 
             crc2.resetTransform();
-
+    
             crc2.translate(this.position.x, this.position.y);
-
             crc2.fillStyle = gradient;
 
             crc2.scale(this.size, this.size);
 
-            
-            crc2.fill(particle);
+            crc2.fill(KillerParticle);
             crc2.restore();
+    
 
-        
-        }
-    }
+
+    }}
 }
-

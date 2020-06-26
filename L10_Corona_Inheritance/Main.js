@@ -13,7 +13,7 @@ var L10_Corona;
         L10_Corona.crc2 = canvas.getContext("2d");
         drawBackground(); //Hintergrund wird kreiert
         // createCorona(26); //Coronaviren werden kreiert (in der Klammer steht die Anzahl als Parameter)
-        window.setInterval(update, 25); //die Funktion update wird alle 25 millisekunden aufgerufen
+        window.setInterval(update, 20); //die Funktion update wird alle 25 millisekunden aufgerufen
         // createHuman(40); //Körperzelle wird kreiert (in der Klammer steht die Anzahl als Parameter)
         // createParticle(200); //Partikel wird kreirt (in der Klammer steht die Anzahl als Parameter)
         createCells();
@@ -21,16 +21,38 @@ var L10_Corona;
     function drawBackground() {
         L10_Corona.crc2.resetTransform();
         let gradient = L10_Corona.crc2.createLinearGradient(0, 0, 0, L10_Corona.crc2.canvas.height);
-        gradient.addColorStop(0, "peachpuff");
-        gradient.addColorStop(1, "seashell");
+        gradient.addColorStop(0, "white");
+        gradient.addColorStop(0.5, "moccasin");
+        gradient.addColorStop(1, "crimson");
         L10_Corona.crc2.fillStyle = gradient;
         L10_Corona.crc2.fillRect(0, 0, L10_Corona.crc2.canvas.width, L10_Corona.crc2.canvas.height);
     }
     function createCells() {
         let x;
         let y;
-        let nParticles = 50;
-        let nCells = 10;
+        let nParticles = 600;
+        let nCells = 40;
+        let nCorona = 20;
+        let nAnti = 30;
+        let nKiller = 30;
+        //KillerCells
+        for (let i = 0; i < nKiller; i++) {
+            x = (Math.random() * L10_Corona.crc2.canvas.width);
+            y = (Math.random() * L10_Corona.crc2.canvas.height);
+            let position = new L10_Corona.Vector(x, y);
+            let killer = new L10_Corona.KillerCell(position);
+            killer.draw();
+            cells.push(killer);
+        }
+        //AntiCells
+        for (let i = 0; i < nAnti; i++) {
+            x = (Math.random() * L10_Corona.crc2.canvas.width);
+            y = (Math.random() * L10_Corona.crc2.canvas.height);
+            let position = new L10_Corona.Vector(x, y);
+            let anti = new L10_Corona.AntiCell(position);
+            anti.draw();
+            cells.push(anti);
+        }
         //Particles
         for (let i = 0; i < nParticles; i++) {
             x = (Math.random() * L10_Corona.crc2.canvas.width);
@@ -42,17 +64,17 @@ var L10_Corona;
         }
         //HumanCells
         for (let i = 0; i < nCells; i++) {
-            x = (Math.random() * L10_Corona.crc2.canvas.width);
-            y = (100 + Math.random() * L10_Corona.crc2.canvas.height / 1.5);
+            x = (Math.random() * L10_Corona.crc2.canvas.width); //x Abstand der Zellen
+            y = (100 + Math.random() * L10_Corona.crc2.canvas.height); //y Abstand der Zellen
             let position = new L10_Corona.Vector(x, y);
             let humancell = new L10_Corona.HumanCells(position);
             humancell.draw();
             cells.push(humancell);
         }
         //coronaVirus
-        for (let i = 0; i < nCells; i++) {
+        for (let i = 0; i < nCorona; i++) {
             x = (Math.random() * L10_Corona.crc2.canvas.width);
-            y = (100 + Math.random() * L10_Corona.crc2.canvas.height / 1.5);
+            y = (100 + Math.random() * L10_Corona.crc2.canvas.height);
             let position = new L10_Corona.Vector(x, y);
             let corona = new L10_Corona.CoronaVirus(position);
             corona.draw();
@@ -63,11 +85,15 @@ var L10_Corona;
         drawBackground();
         for (let Moveable of cells) {
             if (Moveable instanceof L10_Corona.CoronaVirus)
-                Moveable.move(1 / 20);
+                Moveable.move(1 / 30);
             else if (Moveable instanceof L10_Corona.HumanCells)
-                Moveable.move(1 / 20);
+                Moveable.move(1 / 15);
             else if (Moveable instanceof L10_Corona.Particles)
-                Moveable.move(1 / 80);
+                Moveable.move(1 / 80); //Schnelligkeit --> timeslice, also 1 mal in 80 millisek.
+            else if (Moveable instanceof L10_Corona.AntiCell)
+                Moveable.move(1 / 30);
+            else if (Moveable instanceof L10_Corona.KillerCell)
+                Moveable.move(1 / 40);
             Moveable.draw();
         }
     }

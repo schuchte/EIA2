@@ -39,7 +39,7 @@ namespace L10_Corona  {
             if (this.position.x > (crc2.canvas.width))
                 this.position.x -= (crc2.canvas.width);
             if (this.position.y > crc2.canvas.height)
-                this.position.y -= crc2.canvas.height;
+                this.position.y -= crc2.canvas.height; //damit Zellen im Canvas Element bleiben und links/ rechts sowie oben/unten immer wieder aufploppen
 
         }
 

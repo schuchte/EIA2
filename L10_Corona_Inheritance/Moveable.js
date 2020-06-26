@@ -27,7 +27,7 @@ var L10_Corona;
             if (this.position.x > (L10_Corona.crc2.canvas.width))
                 this.position.x -= (L10_Corona.crc2.canvas.width);
             if (this.position.y > L10_Corona.crc2.canvas.height)
-                this.position.y -= L10_Corona.crc2.canvas.height;
+                this.position.y -= L10_Corona.crc2.canvas.height; //damit Zellen im Canvas Element bleiben und links/ rechts sowie oben/unten immer wieder aufploppen
         }
     }
     L10_Corona.Moveable = Moveable;

@@ -23,7 +23,7 @@ namespace L10_Corona  {
 
 
         this.velocity = new Vector(0, 0);
-        this.velocity.random(5, 10);
+        this.velocity.set(0, 10);
         }
 
         move(_timeslice: number): void {
@@ -45,13 +45,13 @@ namespace L10_Corona  {
 
         draw(): void {
 
-            let radiusParticle: number = 10;
+            let radiusParticle: number = 9;
             let particle: Path2D = new Path2D();
             let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
 
             particle.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
             gradient.addColorStop(0, "white");
-            gradient.addColorStop(1, "orange");
+            gradient.addColorStop(1, "red");
 
             crc2.resetTransform();
 

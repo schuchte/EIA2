@@ -45,7 +45,7 @@ namespace L10_Corona {
     
             KillerParticle.ellipse(0, 0, 15, 5, 0, 0, 2 * Math.PI);
             gradient.addColorStop(0, "white");
-            gradient.addColorStop(1, "purple");
+            gradient.addColorStop(1, "navy");
 
             crc2.resetTransform();
     
@@ -55,6 +55,7 @@ namespace L10_Corona {
             crc2.scale(this.size, this.size);
 
             crc2.fill(KillerParticle);
+
             crc2.restore();
     
 

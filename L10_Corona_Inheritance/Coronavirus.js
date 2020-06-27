@@ -42,7 +42,7 @@ var L10_Corona;
                 L10_Corona.crc2.lineTo(50, 50);
                 L10_Corona.crc2.fillStyle = "lime";
                 L10_Corona.crc2.strokeStyle = "black";
-                L10_Corona.crc2.lineWidth = 0.4;
+                L10_Corona.crc2.lineWidth = 0.5;
                 L10_Corona.crc2.fill();
                 L10_Corona.crc2.stroke();
                 L10_Corona.crc2.closePath();

@@ -3,16 +3,13 @@ namespace L10_Corona  {
 
     export class HumanCells extends Moveable { //extends erweitert die Superklasse Moveable um die Subklasse HumanCells
 
-
-        position: Vector;
-        velocity: Vector;
         type: number;
         size: number;
+        infected: boolean = false;
 
         constructor( _position?: Vector) {
     
         super(_position);  //ruft aus der Subklasse HumanCells den constructor _position der Superklasse Moveable auf 
-
 
         if (_position)
         this.position = _position.copy();
@@ -27,23 +24,63 @@ namespace L10_Corona  {
         }
 
         move(_timeslice: number): void {
-           
-            let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
-            offset.scale(_timeslice);
-            this.position.add(offset);
 
-            if (this.position.x < 0)
+            if (this.infected == true) {
+                super.move(_timeslice * 0);
+            } else {
+                super.move(_timeslice);
+           
+                let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
+                offset.scale(_timeslice);
+                this.position.add(offset);
+
+                if (this.position.x < 0)
                 this.position.x += crc2.canvas.width;
-            if (this.position.y < 0)
+                if (this.position.y < 0)
                 this.position.y += crc2.canvas.height;
-            if (this.position.x > crc2.canvas.width)
+                if (this.position.x > crc2.canvas.width)
                 this.position.x -= crc2.canvas.width;
-            if (this.position.y > crc2.canvas.height)
+                if (this.position.y > crc2.canvas.height)
                 this.position.y -= crc2.canvas.height;
+
+        }}
+
+            draw(): void {
+            if (this.infected == true) {
+                this.drawinfected();
+            } else {
+                this.drawhealthy();
+            }
+        }
+
+        drawinfected(): void {
+
+            let radiusParticle: number = 9;
+            let particle: Path2D = new Path2D();
+            let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
+
+            particle.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
+            gradient.addColorStop(0, "white");
+            gradient.addColorStop(1, "hsl(360,0%,0%, 0.5)");
+
+            crc2.resetTransform();
+
+            crc2.translate(this.position.x, this.position.y);
+
+            crc2.fillStyle = gradient;
+            crc2.strokeStyle = "hsl(360,0%,0%, 0.5)";
+
+            crc2.scale(this.size, this.size);
+                 
+            
+            crc2.fill(particle);
+            crc2.stroke(particle);
+            crc2.restore();
 
         }
 
-        draw(): void {
+
+        drawhealthy(): void {
 
             let radiusParticle: number = 9;
             let particle: Path2D = new Path2D();
@@ -58,13 +95,28 @@ namespace L10_Corona  {
             crc2.translate(this.position.x, this.position.y);
 
             crc2.fillStyle = gradient;
+            crc2.strokeStyle = "red";
 
             crc2.scale(this.size, this.size);
                 
             
             crc2.fill(particle);
+            crc2.stroke(particle);
             crc2.restore();
 
         }
-    }
-}
+
+        isHit(_posvirus: Vector, _radiusvirus: number): boolean {
+
+            let distX: number = this.position.x - _posvirus.x;
+            let distY: number = this.position.y - _posvirus.y;
+            let rSum: number = _radiusvirus + this.radius + 10;
+            let distance: number = (distX * distX) + (distY * distY);
+
+            if (distance <= rSum * rSum) {
+                return true;
+            } else {
+                return false;
+            }
+
+    }}}

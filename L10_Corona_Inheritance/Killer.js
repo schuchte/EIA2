@@ -31,7 +31,7 @@ var L10_Corona;
             let gradient = L10_Corona.crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
             KillerParticle.ellipse(0, 0, 15, 5, 0, 0, 2 * Math.PI);
             gradient.addColorStop(0, "white");
-            gradient.addColorStop(1, "purple");
+            gradient.addColorStop(1, "navy");
             L10_Corona.crc2.resetTransform();
             L10_Corona.crc2.translate(this.position.x, this.position.y);
             L10_Corona.crc2.fillStyle = gradient;

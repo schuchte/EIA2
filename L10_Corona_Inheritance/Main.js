@@ -13,7 +13,7 @@ var L10_Corona;
         L10_Corona.crc2 = canvas.getContext("2d");
         drawBackground(); //Hintergrund wird kreiert
         // createCorona(26); //Coronaviren werden kreiert (in der Klammer steht die Anzahl als Parameter)
-        window.setInterval(update, 20); //die Funktion update wird alle 25 millisekunden aufgerufen
+        window.setInterval(update, 40); //die Funktion update wird alle 40 millisekunden aufgerufen
         // createHuman(40); //Körperzelle wird kreiert (in der Klammer steht die Anzahl als Parameter)
         // createParticle(200); //Partikel wird kreirt (in der Klammer steht die Anzahl als Parameter)
         createCells();
@@ -22,7 +22,7 @@ var L10_Corona;
         L10_Corona.crc2.resetTransform();
         let gradient = L10_Corona.crc2.createLinearGradient(0, 0, 0, L10_Corona.crc2.canvas.height);
         gradient.addColorStop(0, "white");
-        gradient.addColorStop(0.5, "moccasin");
+        gradient.addColorStop(0.5, "mistyrose");
         gradient.addColorStop(1, "crimson");
         L10_Corona.crc2.fillStyle = gradient;
         L10_Corona.crc2.fillRect(0, 0, L10_Corona.crc2.canvas.width, L10_Corona.crc2.canvas.height);
@@ -31,10 +31,10 @@ var L10_Corona;
         let x;
         let y;
         let nParticles = 600;
-        let nCells = 40;
-        let nCorona = 20;
+        let nCells = 60;
+        let nCorona = 15;
         let nAnti = 30;
-        let nKiller = 30;
+        let nKiller = 20;
         //KillerCells
         for (let i = 0; i < nKiller; i++) {
             x = (Math.random() * L10_Corona.crc2.canvas.width);
@@ -96,6 +96,26 @@ var L10_Corona;
                 Moveable.move(1 / 40);
             Moveable.draw();
         }
+        Infection();
+    }
+    function Infection() {
+        for (let Moveable of cells) {
+            if (Moveable instanceof L10_Corona.CoronaVirus) {
+                let radiusvirus = Moveable.radius;
+                let positionvirus = Moveable.position;
+                let cellHit = getcellHit(positionvirus, radiusvirus);
+                if (cellHit) {
+                    cellHit.infected = true;
+                }
+            }
+        }
+    }
+    function getcellHit(_positionvirus, _radiusvirus) {
+        for (let Moveable of cells) {
+            if (Moveable instanceof L10_Corona.HumanCells && Moveable.isHit(_positionvirus, _radiusvirus))
+                return Moveable;
+        }
+        return null;
     }
 })(L10_Corona || (L10_Corona = {}));
 // function createCorona(_nCorona: number): void {

@@ -35,6 +35,7 @@ var L10_Corona;
             AntiParticle.closePath();
             L10_Corona.crc2.resetTransform();
             L10_Corona.crc2.lineWidth = 3;
+            L10_Corona.crc2.strokeStyle = "black";
             L10_Corona.crc2.translate(this.position.x, this.position.y);
             L10_Corona.crc2.scale(this.size, this.size);
             L10_Corona.crc2.stroke(AntiParticle);

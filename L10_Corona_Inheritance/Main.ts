@@ -20,7 +20,7 @@ namespace L10_Corona {
 
         drawBackground(); //Hintergrund wird kreiert
         // createCorona(26); //Coronaviren werden kreiert (in der Klammer steht die Anzahl als Parameter)
-        window.setInterval(update, 20);  //die Funktion update wird alle 25 millisekunden aufgerufen
+        window.setInterval(update, 40);  //die Funktion update wird alle 40 millisekunden aufgerufen
         // createHuman(40); //Körperzelle wird kreiert (in der Klammer steht die Anzahl als Parameter)
         // createParticle(200); //Partikel wird kreirt (in der Klammer steht die Anzahl als Parameter)
         createCells();
@@ -33,7 +33,7 @@ namespace L10_Corona {
 
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
         gradient.addColorStop(0, "white");
-        gradient.addColorStop(0.5, "moccasin");
+        gradient.addColorStop(0.5, "mistyrose");
         gradient.addColorStop(1, "crimson" );
 
         crc2.fillStyle = gradient;
@@ -45,10 +45,10 @@ namespace L10_Corona {
         let x: number;
         let y: number;
         let nParticles: number = 600;
-        let nCells: number = 40;
-        let nCorona: number = 20;
+        let nCells: number = 60;
+        let nCorona: number = 15;
         let nAnti: number = 30;
-        let nKiller: number = 30;
+        let nKiller: number = 20;
 
 
         //KillerCells
@@ -127,6 +127,30 @@ namespace L10_Corona {
                     Moveable.move(1/ 40);
                 Moveable.draw(); 
             }
+
+            Infection();
+}
+
+
+    function Infection(): void {
+    for (let Moveable of cells) {
+        if (Moveable instanceof CoronaVirus) {
+            let radiusvirus: number = Moveable.radius;
+            let positionvirus: Vector = Moveable.position;
+
+            let cellHit: HumanCells | null = getcellHit(positionvirus, radiusvirus);
+            if (cellHit) {
+                cellHit.infected = true;
+            }
+        }
+    }
+}
+    function getcellHit(_positionvirus: Vector, _radiusvirus: number): HumanCells | null {
+    for (let Moveable of cells) {
+        if (Moveable instanceof HumanCells && Moveable.isHit(_positionvirus, _radiusvirus))
+            return Moveable;
+    }
+    return null;
 }
 }
 

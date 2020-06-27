@@ -64,7 +64,7 @@ namespace L10_Corona  {
             
                     crc2.fillStyle = "lime";
                     crc2.strokeStyle = "black";
-                    crc2.lineWidth = 0.4;
+                    crc2.lineWidth = 0.5;
                 
                     crc2.fill();
                     crc2.stroke();

@@ -52,6 +52,7 @@ namespace L10_Corona  {
             AntiParticle.closePath();
             crc2.resetTransform();
             crc2.lineWidth = 3;
+            crc2.strokeStyle = "black";
             crc2.translate(this.position.x, this.position.y);
             crc2.scale(this.size, this.size);
          

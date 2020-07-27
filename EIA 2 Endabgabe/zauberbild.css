@@ -1,0 +1,131 @@
+body{
+ background-color: white;
+ position: absolute;   
+}
+
+canvas{
+    border:solid rgb(140, 140, 140);
+    position: relative;
+    left:500px;
+    top:50px;
+
+}
+
+button#red {
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+button#orange {
+    background-color: rgb(255, 115, 0);
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+button#blue {
+    background-color: blue;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+button#yellow {
+    background-color: yellow;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+button#green {
+    background-color: rgb(2, 248, 2);
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+button#pink {
+    background-color: rgb(255, 56, 89);
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+button#white {
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+button#black {
+    background-color: black;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+    h1{
+font-size:30px;
+font-family: sans-serif;
+position: relative;
+left:650px;
+}
+
+div#Choose{
+    position: absolute;
+    top:120px;
+    left:150px;
+}
+
+div#Title{
+    position: absolute;
+    top:120px;
+    left: 1150px;
+}
+
+div#rubbish{
+    position: absolute;
+    left:740px;
+    top:550px;
+}
+
+div#rubbish:hover{
+    font-size: 100%;
+}
+
+button#deleteimg{
+    position: absolute;
+    left:550px;
+    top:550px;
+    width: 70px;
+    height: 30px;
+    color:white;
+    background-color:rgb(202, 0, 0);
+    border-color: rgb(255, 74, 74);
+    border-radius: 6px;
+}
+
+button#saveimg{
+    position: absolute;
+    left:880px;
+    top:550px;
+    width: 70px;
+    height: 30px;
+    color:white;
+    background-color:rgb(71, 221, 41);
+    border-color:rgb(0, 255, 0);
+    border-radius: 6px;
+    font-family: sans-serif;
+
+}

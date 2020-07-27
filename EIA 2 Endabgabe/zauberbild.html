@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Zauberbild</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='zauberbild.css'>
+    <script src='main.js'></script>
+    <script src='Vector.js'></script>
+    <script src='Symbol.js'></script>
+    <script src='circle.js'></script>
+    <script src='triangle.js'></script>
+    <script src='star.js'></script>
+    <script src='heart.js'></script>
+  
+
+
+</head>
+<body>
+    <h1>Magical Image</h1>
+    <canvas width="600" height="400"></canvas>
+ <div id="Choose">
+    <fieldset id="size">
+        <legend>Choose your image size</legend>
+        <input id="small" value="small" name="small" type="radio">
+        <label for="small">small</label><br>
+
+        <input id="medium" value="medium" name="medium" type="radio">
+        <label for="small">medium</label><br>
+
+        <input id="big" value="big" name="big" type="radio">
+        <label for="small">big</label><br>
+    </fieldset>
+
+    <fieldset id="color">
+        <legend>Choose your Background Color</legend>
+       <button id="red"></button>
+       <button id="orange"></button>
+       <button id="blue"></button>
+       <button id="pink"></button>
+       <button id="yellow"></button>
+       <button id="green"></button>
+       <button id="white"></button>
+       <button id="black"></button>
+    </fieldset>
+
+    <fieldset id="symbol">
+        <legend>Choose your Symbol</legend>
+        <button id="heart">heart</button>
+        <button id="star">star</button>
+        <button id="circle">circle</button>
+        <button id="triangle">triangle</button>
+    </fieldset>
+</div>
+<div id="Title">
+    <fieldset id="title">
+        <legend>Enter a title</legend>
+        <input id="title1"></input><br>
+        <input id="title2"></input><br>
+        <input id="title3"></input><br>
+    </fieldset>
+</div>
+    <button id="deleteimg">DELETE</button>
+    <button id="saveimg">SAVE</button>
+    <div id="rubbish">&#128465;&#65039;</div>
+
+</body>
+</html>

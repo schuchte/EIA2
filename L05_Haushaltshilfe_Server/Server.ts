@@ -51,7 +51,7 @@ export namespace L07_Househelp {
             let jsonString: string = JSON.stringify(url.query); //
             _response.write(jsonString);
 
-            storeOrder(url.query);//nehmen den query von der url --> einen Teil vom url (?Drink=Mojito....)
+            storeOrder(url.query); //nehmen den query von der url --> einen Teil vom url (?Drink=Mojito....)
         }
 
         _response.end();

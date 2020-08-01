@@ -13,23 +13,25 @@
     <script src='triangle.js'></script>
     <script src='star.js'></script>
     <script src='heart.js'></script>
+    <script src='Server.js'></script>
   
 
 
 </head>
 <body>
     <h1>Magical Image</h1>
+    <p id="info">doubleclick on Symbol to delete</p>
     <canvas width="600" height="400"></canvas>
  <div id="Choose">
     <fieldset id="size">
         <legend>Choose your image size</legend>
-        <input id="small" value="small" name="small" type="radio">
+        <input id="small" value="small" name="button" type="radio">
         <label for="small">small</label><br>
 
-        <input id="medium" value="medium" name="medium" type="radio">
+        <input id="medium" value="medium" name="button" type="radio">
         <label for="small">medium</label><br>
 
-        <input id="big" value="big" name="big" type="radio">
+        <input id="big" value="big" name="button" type="radio">
         <label for="small">big</label><br>
     </fieldset>
 
@@ -52,18 +54,26 @@
         <button id="circle">circle</button>
         <button id="triangle">triangle</button>
     </fieldset>
+
+
+<fieldset id="animation">
+    <legend>Make your Symbols faster</legend>
+    <button id="velocity">OKAY</button>
+</fieldset>
 </div>
+
 <div id="Title">
     <fieldset id="title">
         <legend>Enter a title</legend>
-        <input id="title1"></input><br>
-        <input id="title2"></input><br>
-        <input id="title3"></input><br>
+        <input id="title1"></input>
+        <button id="OK">OK</button>
     </fieldset>
+    <div id="showtitle"></div>
+    <div id="savedimages"></div>
 </div>
-    <button id="deleteimg">DELETE</button>
+    <button id="deleteimg">DELETE IMAGE</button>
     <button id="saveimg">SAVE</button>
-    <div id="rubbish">&#128465;&#65039;</div>
+    <button id="deletetitle">DELETE TITLE</button>
 
 </body>
 </html>

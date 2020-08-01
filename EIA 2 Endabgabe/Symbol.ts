@@ -14,12 +14,12 @@ namespace Magical_Image {
                 else 
                 this.velocity = new Vector(0, 0);
     
-                this.radius = 5;
+                this.radius = 25;
                 this.velocity = new Vector(0, 0);
                 
             }
     
-            public  abstract draw(): void;
+            public  abstract draw(_crc: CanvasRenderingContext2D): void;
     
             public move(_timeslice: number): void {
     
@@ -39,9 +39,11 @@ namespace Magical_Image {
                     this.position.y -= crc2.canvas.height;
     
             }
+
     
-        }
-    
-    }
+        
+
+       
+    }}
 
 

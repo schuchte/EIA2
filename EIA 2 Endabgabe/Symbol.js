@@ -8,7 +8,7 @@ var Magical_Image;
                 this.position = _position.copy();
             else
                 this.velocity = new Magical_Image.Vector(0, 0);
-            this.radius = 5;
+            this.radius = 25;
             this.velocity = new Magical_Image.Vector(0, 0);
         }
         move(_timeslice) {

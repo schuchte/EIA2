@@ -1,0 +1,227 @@
+body{
+ position: absolute;   
+ background-color: lightgreen;
+}
+
+canvas{
+    border: rgb(0, 0, 0);
+    border-radius: 10px;
+    border-style: ridge;
+    position: relative;
+    background-color: white;
+    left:467px;
+    top:50px;
+
+}
+
+div#showtitle{
+    position: relative;
+    top: 20px;
+    background-color: white;
+    width: 200px;
+    height: 350px;
+    border: rgb(0, 0, 0);
+    border-radius: 10px;
+    border-style: ridge;
+
+}
+
+p#info{
+    position: relative;
+    left:655px;
+    font-size: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+p#info:hover{
+    color:rgb(182, 15, 187);
+    cursor: pointer;
+
+}
+
+button#red {
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+button#orange {
+    background-color: rgb(255, 115, 0);
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+fieldset{
+  border-radius: 5px;
+  border-color: white;
+  background-color: rgb(255, 183, 255,0.2);
+  font-family: 'Courier New', Courier, monospace;
+
+}
+
+
+button#blue {
+    background-color: blue;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border-style:solid black;
+
+}
+
+button#yellow {
+    background-color: yellow;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+button#green {
+    background-color: rgb(2, 248, 2);
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+button#pink {
+    background-color: rgb(255, 56, 89);
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+button#white {
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+button#black {
+    background-color: black;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+
+}
+
+    h1{
+font-size:30px;
+font-family: 'Courier New', Courier, monospace;
+position: relative;
+left:650px;
+}
+
+div#Choose{
+    position: absolute;
+    top:150px;
+    left:80px;
+}
+
+div#Title{
+    position: absolute;
+    top:120px;
+    left: 1150px;
+}
+
+div#savedimages{
+    position: absolute;
+    top: 0px;
+    right:288px;
+    width: 600px;
+    height:20px;
+    border-radius: 20px;
+    background-color: rgba(255, 108, 108, 0.5);
+
+}
+
+button#deleteimg:hover{
+    font-size: 100%;
+    background-color: rgba(255, 108, 108, 0.9);
+    width: 80px;
+    height: 40px;
+}
+
+button#deleteimg{
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    left:180px;
+    top:460px;
+    width: 70px;
+    height: 30px;
+    color:white;
+    background-color:rgb(202, 0, 0);
+    border-color: rgb(255, 74, 74);
+    border-radius: 6px;
+}
+
+button#saveimg{
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    left:1155px;
+    top:600px;
+    width: 70px;
+    height: 30px;
+    color:black;
+    background-color:rgb(71, 221, 41);
+    border-color:rgb(0, 255, 0);
+    border-radius: 6px;
+   
+}
+
+button#saveimg:hover{
+    font-size: 100%;
+    background-color: rgba(135, 248, 113, 0.8);
+    width: 80px;
+    height: 40px;
+}
+
+button#OK{
+    background-color: rgb(223, 75, 223);
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+    left:65px;
+    top:30px;
+
+}
+
+
+button#OK:hover{
+    font-size: 100%;
+    background-color:  rgb(251, 151, 251);
+}
+
+fieldset#title{
+    width: 176px;
+}
+
+button#deletetitle {
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    left:1285px;
+    top:600px;
+    width: 70px;
+    height: 30px;
+    color:black;
+    background-color:rgb(61, 197, 243);
+    border-color:rgb(0, 149, 255);
+    border-radius: 6px;
+}
+
+button#deletetitle:hover{
+    font-size: 100%;
+    background-color:rgb(131, 215, 243);
+    width: 80px;
+    height: 40px;
+}

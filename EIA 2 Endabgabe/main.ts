@@ -9,7 +9,6 @@ namespace Magical_Image {
     let okayButton: HTMLButtonElement;
     let deleteButton: HTMLButtonElement;
     let backgroundColor: HTMLFieldSetElement;
-    let velocity: HTMLButtonElement;
     let form: HTMLFieldSetElement;
     let symbols: HTMLFieldSetElement;
     let figures: Symbol[] = [];
@@ -26,14 +25,9 @@ namespace Magical_Image {
 
     async function handleLoad(_event: Event): Promise<void> {
 
-        //let response: Response = await fetch("HouseData.json"); //(await) warten bis fetch die Daten von HouseData.json hat
-        //let offer: string = await response.text(); //text() liefert mir nicht direkt einen string, sondern nur die Promise einen string zu liefern, wenn sie die Daten hat (solage warten ->await)
-        //let data: Data = JSON.parse(offer); //JSON.prse wandelt den offer- string in ein Objekt um
-
         form = <HTMLFieldSetElement>document.querySelector("fieldset#size");
         backgroundColor = <HTMLFieldSetElement>document.querySelector("fieldset#color");
         symbols = <HTMLFieldSetElement>document.querySelector("fieldset#symbol");
-        velocity = <HTMLButtonElement>document.querySelector("button#velocity");
         mainCanvas = <HTMLCanvasElement> document.querySelector("canvas"); 
         crc2 = <CanvasRenderingContext2D>mainCanvas.getContext("2d"); 
         deleteButton = <HTMLButtonElement>document.querySelector("button#deleteimg");
@@ -42,32 +36,29 @@ namespace Magical_Image {
         deleteTitle = <HTMLButtonElement>document.querySelector("button#deletetitle");
 
         form.addEventListener("click", chooseCanvas); 
-        velocity.addEventListener("click", Colorchange);
         backgroundColor.addEventListener("click", chooseBackground);
         deleteButton.addEventListener("click", clearCanvas); 
         okayButton.addEventListener("click", pushTitle);
         saveButton.addEventListener("click", saveImage); 
         deleteTitle.addEventListener("click", cancelTitle);
+        document.addEventListener("click", drawSymbol);
+        mainCanvas.addEventListener("dblclick", deleteSymbol);
+
         chooseBackground(_event);
         setInterval(animate, 100); 
-        mainCanvas.addEventListener("dblclick", deleteSymbol);
-        document.addEventListener("click", drawSymbol);
-
+       
         mainCanvas.addEventListener("mousedown", pickSymbol);
-        mainCanvas.addEventListener("mouseup", placeSymbol);
         mainCanvas.addEventListener("mousemove", dragSymbol);
-
+        mainCanvas.addEventListener("mouseup", placeSymbol);
     }
 
 
     function pickSymbol(_event: MouseEvent): void {
-        console.log("I was picked")
-
-        dragDrop = true;
+        console.log("I was picked");
 
         let mousePosY: number = _event.clientY; //Mouseposition 
         let mousePosX: number = _event.clientX;
-        let canvasRect: ClientRect | DOMRect = mainCanvas.getBoundingClientRect(); //
+        let canvasRect: DOMRect = mainCanvas.getBoundingClientRect(); //
 
         //Client ist die Maus
 
@@ -83,10 +74,12 @@ namespace Magical_Image {
                 figur.position.y - figur.radius < offsetY &&
                 figur.position.y + figur.radius > offsetY) {
                 console.log(figur);
+                dragDrop =  true;
 
                 let index: number = figures.indexOf(figur);
                 figures.splice(index, 1); //Symbol soll aus Array gelöscht werden durch splice
                 objectDragDrop = figur; //das Symbol wird als objectDragDrop gespeichert
+                return;
             }
         }
     }
@@ -104,7 +97,6 @@ namespace Magical_Image {
     function dragSymbol(_event: MouseEvent): void {
         console.log("I was dragged");
 
-         //let position: Vector = new Vector(_event.clientX - crc2.canvas.offsetLeft, _event.clientY - crc2.canvas.offsetTop);
         if (dragDrop == true) {
          objectDragDrop.position.x = _event.clientX - mainCanvas.getBoundingClientRect().left; //ObjectDragdrop mit der position x und y soll dem ClientCursor folgen, solange er im Canvas ist -->get BoundinClientRect left und top
          objectDragDrop.position.y = _event.clientY - mainCanvas.getBoundingClientRect().top;
@@ -159,10 +151,11 @@ namespace Magical_Image {
     
             }
     
-        let dataServer: string = JSON.stringify(SafeMagicalImage); //wandelt Array um, damit der Server es lesen kann 
+        let dataServer: string = JSON.stringify(SafeMagicalImage); //wandelt Array in einen JSON string um, damit der Server es lesen kann 
         let query: URLSearchParams = new URLSearchParams(dataServer);
-        let response: Response = await fetch(url + "?safeImage&name=" + Picturedata + "&" + query.toString()); 
-        let texte: string = await response.text();
+        let response: Response = await fetch(url + "?safeImage&name=" + Picturedata + "&" + query.toString()); //(await) warten bis fetch die Daten von HouseData.json hat
+        let texte: string = await response.text(); //text() liefert mir nicht direkt einen string, sondern nur die Promise einen string zu liefern, wenn sie die Daten hat (solage warten ->await)
+        
         console.log(texte);
         console.log(Picturedata);
         alert("Your Image with the " +  Picturedata +  "  "   +  "has been saved!");
@@ -178,60 +171,92 @@ namespace Magical_Image {
         note.innerHTML = "<p><strong> Title " +  "  :  " + input.value;
         input.value = "";
 
-        SafeMagicalImage.push(input.value);
-        
-         
+        SafeMagicalImage.push(input.value);       
 
     }
 
 
     function Symbolcolor(): void {
 
+        let choosenSymbol: any = figures[figures.length - 1]; //das letzte Symbol das gepusht wurde in Array
+
         var Color = prompt("Enter the color of your Symbol");
 
         for (let Symbol of figures) {
 
             if (Color != null && Symbol instanceof Heart) 
-            Symbol.color = Color;
+            choosenSymbol.color = Color;
+            //Symbol.color = Color
 
             else if (Color != null && Symbol instanceof Triangle)
-            Symbol.color = Color;
+            choosenSymbol.color = Color;
 
             else if (Color != null && Symbol instanceof Circle)
-            Symbol.color = Color;
+            choosenSymbol.color = Color;
 
             else if (Color != null && Symbol instanceof Star)
-            Symbol.color = Color;
+            choosenSymbol.color = Color;
         
         }               
-    }
+    }   
 
-    function Colorchange(_event: Event): void  {
-
-        for (let Symbol of figures) {
-
-            if (Symbol instanceof Star)
-            Symbol.change(2);
-
-            else if (Symbol instanceof Heart)
-            Symbol.change(3)
-            
-        }               
-    }
-
-        
 
     function deleteSymbol(_event: MouseEvent): void {
 
-        for (let Symbol of figures){ 
+        let mousePosY: number = _event.clientY;
+        let mousePosX: number = _event.clientX;
+        let canvasRect: DOMRect = mainCanvas.getBoundingClientRect();
 
-        let index: number = figures.indexOf(Symbol);
-        figures.splice(index, 1);
-        console.log("gelöscht");
-                
+        let offsetX: number = mousePosX - canvasRect.left;
+        let offsetY: number = mousePosY - canvasRect.top;
+        console.log(offsetX, offsetY);
+
+
+        for (let figure of figures) {
+            //symbol.position.x = mousePosX;
+            //symbol.position.y = mousePosY;
+
+            if (figure.position.x - figure.radius < offsetX &&
+                figure.position.x + figure.radius > offsetX &&
+                figure.position.y - figure.radius < offsetY && 
+                figure.position.y + figure.radius > offsetY) {
+                console.log(figure);
+
+                let index: number = figures.indexOf(figure);
+                figures.splice(index, 1);
+                console.log("huii");
+
+                console.log(index);   
+                return;
             }
-       
+        }
     }
+
+    // function deleteSymbol(_event: MouseEvent): void {
+
+    //     for (let Symbol of figures) {
+
+    //     let mousePosY: number = _event.clientY;
+    //     let mousePosX: number = _event.clientX;
+    //     let canvasRect: ClientRect | DOMRect = mainCanvas.getBoundingClientRect();
+
+    //     let offsetX: number = mousePosX - canvasRect.left;
+    //     let offsetY: number = mousePosY - canvasRect.top;
+
+    //     for (let figur of figures) { 
+
+    //         if (figur.position.x - figur.radius < offsetX &&
+    //             figur.position.x + figur.radius > offsetX &&
+    //             figur.position.y - figur.radius < offsetY &&
+    //             figur.position.y + figur.radius > offsetY) {
+
+    //             let index: number = figures.indexOf(figur);
+    //             figures.splice(index, 1);
+    //             console.log("Es funktioniert");
+    //         }
+    //     }
+       
+    // }}
 
 
 
@@ -354,16 +379,14 @@ namespace Magical_Image {
 
         let target: HTMLButtonElement = <HTMLButtonElement>_event.target;
         let id: string = target.id;
-        let x: number = 50; 
-        let y: number = 50; 
-
+      
 
         switch (id) {
             case "star":
-        
+                let x: number = 10; 
+                let y: number = 50; 
                 let positionStar: Vector = new Vector(x, y);
-                let star:  Star = new Star(positionStar); 
-                
+                let star:  Star = new Star(positionStar);
                 star.draw();
                 figures.push(star);
                 Symbolcolor();
@@ -372,9 +395,11 @@ namespace Magical_Image {
                 break;
             case "circle":
 
-               
-                let positionCircle: Vector = new Vector(x, y);
-                let circle:  Circle = new Circle(positionCircle);
+                let x1: number = 10; 
+                let y1: number = 50;
+                let positionCircle: Vector = new Vector(x1, y1);
+                let circle: Circle = new Circle(positionCircle);
+        
                 circle.draw();
                 figures.push(circle);
                 Symbolcolor();
@@ -383,8 +408,10 @@ namespace Magical_Image {
                 
                 break; 
             case "heart":
+                let x2: number = 300; 
+                let y2: number = 100;
             
-                let positionHeart: Vector = new Vector(x, y);
+                let positionHeart: Vector = new Vector(x2, y2);
                 let heart:  Heart = new Heart(positionHeart);
                 heart.draw();
                 figures.push(heart);
@@ -393,10 +420,14 @@ namespace Magical_Image {
                 
                 break; 
             case "triangle":
+
+                let x3: number = 600; 
+                let y3: number = 50;
                     
-                let position: Vector = new Vector(x, y);
+                let position: Vector = new Vector(x3, y3);
                 let triangle:  Triangle = new Triangle(position);
                 triangle.draw();
+                
                 figures.push(triangle); 
                 Symbolcolor();  
                 break; 
@@ -435,7 +466,7 @@ namespace Magical_Image {
 
        let clearBackground: boolean = false;
        if (clearBackground == false) {
-
+       backgroundImage = crc2.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
        crc2.fillStyle = "white"; 
        crc2.fill(); 
        crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height); 
@@ -443,10 +474,5 @@ namespace Magical_Image {
      }
        crc2.save();
     }
-
-
-    
- 
-    
 
 }

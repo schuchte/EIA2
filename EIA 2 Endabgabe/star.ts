@@ -1,8 +1,6 @@
 namespace Magical_Image {
 
     export class Star extends Symbol { 
-
-        public color: string;
        
         constructor(_position?: Vector) {
 
@@ -12,10 +10,17 @@ namespace Magical_Image {
             this.position = _position.copy();
             else 
             this.velocity = new Vector(0, 0);
-            this.radius = 25;
+            this.radius = 55;
+            this.rotation = 0; 
+
             this.velocity = new Vector(0, 0);
             this.velocity = Vector.getRandom(5, 10);
             this.color = "black";
+        }
+
+        public rotate(): void {
+            
+            this.rotation += 0.5; 
         }
 
         public draw(): void {
@@ -23,8 +28,11 @@ namespace Magical_Image {
             crc2.resetTransform();
             crc2.save();
             crc2.translate(this.position.x, this.position.y);  
+            crc2.scale(0.3, 0.3); 
     
             crc2.fillStyle = this.color;
+            crc2.rotate(this.rotation * Math.PI / 70); 
+
             crc2.beginPath();
             crc2.moveTo(108, 0.0);
             crc2.lineTo(141, 70);
@@ -39,33 +47,10 @@ namespace Magical_Image {
             crc2.lineTo(108, 0);
             crc2.closePath();
             crc2.fill();
+            this.rotate();
+            
+            crc2.restore(); 
         }
-
-        public move(_timeslice: number): void {
-           
-            let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
-            offset.scale(_timeslice);
-            this.position.add(offset);
-
-            if (this.position.x < 0)
-            this.position.x += crc2.canvas.width;
-            if (this.position.y < 0)
-            this.position.y += crc2.canvas.height;
-            if (this.position.x > crc2.canvas.width)
-            this.position.x -= crc2.canvas.width;
-            if (this.position.y > crc2.canvas.height)
-            this.position.y -= crc2.canvas.height;
-
-    }
-
-
-    public change(_timeslice: number): void {
-
-        this.velocity.x = 40;
-        this.velocity.y = 40;
-      
-    
-       }
 
     }
 }

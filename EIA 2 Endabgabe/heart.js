@@ -9,14 +9,20 @@ var Magical_Image;
             else
                 this.velocity = new Magical_Image.Vector(0, 0);
             this.radius = 25;
+            this.rotation = 0;
             this.color = "black";
             this.velocity = new Magical_Image.Vector(0, 0);
             this.velocity = Magical_Image.Vector.getRandom(5, 10);
         }
+        rotate() {
+            this.rotation += 0.5;
+        }
         draw() {
             Magical_Image.crc2.resetTransform();
             Magical_Image.crc2.save();
+            Magical_Image.crc2.scale(0.5, 0.5);
             Magical_Image.crc2.translate(this.position.x, this.position.y);
+            Magical_Image.crc2.rotate(this.rotation * Math.PI / 70);
             Magical_Image.crc2.fillStyle = this.color;
             Magical_Image.crc2.beginPath();
             Magical_Image.crc2.moveTo(75, 40);
@@ -26,24 +32,10 @@ var Magical_Image;
             Magical_Image.crc2.bezierCurveTo(110, 102, 130, 80, 130, 62.5);
             Magical_Image.crc2.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
             Magical_Image.crc2.bezierCurveTo(85, 25, 75, 37, 75, 40);
+            Magical_Image.crc2.closePath();
             Magical_Image.crc2.fill();
-        }
-        move(_timeslice) {
-            let offset = new Magical_Image.Vector(this.velocity.x, this.velocity.y);
-            offset.scale(_timeslice);
-            this.position.add(offset);
-            if (this.position.x < 0)
-                this.position.x += Magical_Image.crc2.canvas.width;
-            if (this.position.y < 0)
-                this.position.y += Magical_Image.crc2.canvas.height;
-            if (this.position.x > Magical_Image.crc2.canvas.width)
-                this.position.x -= Magical_Image.crc2.canvas.width;
-            if (this.position.y > Magical_Image.crc2.canvas.height)
-                this.position.y -= Magical_Image.crc2.canvas.height;
-        }
-        change(_timeslice) {
-            this.velocity.x = 40;
-            this.velocity.y = 40;
+            this.rotate();
+            Magical_Image.crc2.restore();
         }
     }
     Magical_Image.Heart = Heart;

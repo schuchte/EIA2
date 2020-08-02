@@ -8,16 +8,22 @@ var Magical_Image;
                 this.position = _position.copy();
             else
                 this.velocity = new Magical_Image.Vector(0, 0);
-            this.radius = 25;
+            this.radius = 55;
+            this.rotation = 0;
             this.velocity = new Magical_Image.Vector(0, 0);
             this.velocity = Magical_Image.Vector.getRandom(5, 10);
             this.color = "black";
+        }
+        rotate() {
+            this.rotation += 0.5;
         }
         draw() {
             Magical_Image.crc2.resetTransform();
             Magical_Image.crc2.save();
             Magical_Image.crc2.translate(this.position.x, this.position.y);
+            Magical_Image.crc2.scale(0.3, 0.3);
             Magical_Image.crc2.fillStyle = this.color;
+            Magical_Image.crc2.rotate(this.rotation * Math.PI / 70);
             Magical_Image.crc2.beginPath();
             Magical_Image.crc2.moveTo(108, 0.0);
             Magical_Image.crc2.lineTo(141, 70);
@@ -32,23 +38,8 @@ var Magical_Image;
             Magical_Image.crc2.lineTo(108, 0);
             Magical_Image.crc2.closePath();
             Magical_Image.crc2.fill();
-        }
-        move(_timeslice) {
-            let offset = new Magical_Image.Vector(this.velocity.x, this.velocity.y);
-            offset.scale(_timeslice);
-            this.position.add(offset);
-            if (this.position.x < 0)
-                this.position.x += Magical_Image.crc2.canvas.width;
-            if (this.position.y < 0)
-                this.position.y += Magical_Image.crc2.canvas.height;
-            if (this.position.x > Magical_Image.crc2.canvas.width)
-                this.position.x -= Magical_Image.crc2.canvas.width;
-            if (this.position.y > Magical_Image.crc2.canvas.height)
-                this.position.y -= Magical_Image.crc2.canvas.height;
-        }
-        change(_timeslice) {
-            this.velocity.x = 40;
-            this.velocity.y = 40;
+            this.rotate();
+            Magical_Image.crc2.restore();
         }
     }
     Magical_Image.Star = Star;

@@ -5,7 +5,7 @@ const Url = require("url");
 const Mongo = require("mongodb");
 var Magical_Image;
 (function (Magical_Image) {
-    let orders;
+    let images;
     let port = process.env.PORT;
     if (port == undefined)
         port = 5001;
@@ -15,7 +15,6 @@ var Magical_Image;
     connectToDatabase(databaseUrl); //gibt Adresse weiter an Funktion connectToDatabase
     function startServer(_port) {
         let server = Http.createServer(); // Für Server wird Port erstellt
-        console.log(server);
         console.log("Server starting on port:" + _port);
         server.listen(_port); //Server hört auf Port und der Port wird geöffnet
         server.addListener("request", handleRequest); // Ein Event Request wird auf den Server gesetzt, der dann die Funktion HandleRequest aufruft
@@ -24,12 +23,12 @@ var Magical_Image;
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options); //wir kriegen hier ne Art MongoShell die mit unserer Datenbank kommuniziert
         await mongoClient.connect(); //MongoDB soll verbunden werden
-        orders = mongoClient.db("Zauberbild").collection("magicPicture"); //Eingreifen und schon mal eine Datenbank (Househelp) und eine Collection darin (Orders) erstellen//Daten die in Ordern gespeichert wurden werden in der collection abgelegt. 
-        console.log("Database connection", orders != undefined); //wenn das geklappt hat Konsolenausgabe mit den Daten
+        images = mongoClient.db("MagicImage").collection("images"); //Eingreifen und schon mal eine Datenbank (Househelp) und eine Collection darin (Orders) erstellen//Daten die in Ordern gespeichert wurden werden in der collection abgelegt. 
+        console.log("Database connection", images != undefined); //wenn das geklappt hat Konsolenausgabe mit den Daten
     }
     let anyOrder = [];
     async function handleRequest(_request, _response) {
-        console.log("what's up?");
+        // console.log("what's up?"); 
         console.log(_request.url); //Wie mit der Request umgegangen wird 
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
@@ -53,20 +52,20 @@ var Magical_Image;
             else { // wenn nicht, dann soll eine Variable gebildet werden,
                 let jsonString = JSON.stringify(url.query);
                 _response.write(jsonString); //und diese als Antwort zurück geliefert werden
-                storeOrder(url.query); //Der url Query soll dann an die collection der Database geschickt/eingetragen werden
+                storePicture(url.query); //Der url Query soll dann an die collection der Database geschickt/eingetragen werden
             }
             //let jsonString: string = JSON.stringify(url.query); 
             //_response.write(jsonString); 
-            storeOrder(url.query); //nehmen den query von der url --> einen Teil vom url (?Drink=Mojito....)
+            storePicture(url.query); //nehmen den query von der url --> einen Teil vom url (?Drink=Mojito....)
         }
         _response.end(); //Antwort wird verschickt
     }
-    function retrieveOrder(_order) {
-        let jsonString = JSON.stringify(_order);
+    function retrieveOrder(_image) {
+        let jsonString = JSON.stringify(_image);
         anyOrder.push(jsonString); // In das Array soll dann der jsonString gepusht werden 
     }
-    function storeOrder(_order) {
-        orders.insert(_order);
+    function storePicture(_image) {
+        images.insert(_image);
     }
 })(Magical_Image = exports.Magical_Image || (exports.Magical_Image = {}));
 //# sourceMappingURL=Server.js.map

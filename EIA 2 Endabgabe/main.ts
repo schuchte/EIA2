@@ -117,19 +117,17 @@ namespace Magical_Image {
         let titles: HTMLDivElement = <HTMLDivElement>document.querySelector("div#savedimages");
         let note: HTMLDivElement = <HTMLDivElement>document.querySelector("div#showtitle");
         titles.innerHTML = "  " + note.innerText;
-    
-        console.log(note.innerText);
-
         let Picturedata: string = note.innerText;
+
         console.log(Picturedata);
+        SafeMagicalImage.push(mainCanvas.width.toString(), mainCanvas.height.toString()); //speichert die Canvas Breite & Höhe
+        SafeMagicalImage.push(SafeBackgroundColor); //speichert die Farbe des Hintergrunds
 
         if (Picturedata != null) {
   
-                SafeMagicalImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
-                SafeMagicalImage.push(SafeBackgroundColor);
-            
-                for (let figur of figures) {
-                    SafeMagicalImage.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
+              SafeMagicalImage.push(Picturedata); //speichert den Titel des Bildes
+              
+              for (let figur of figures) {
     
                     if (figur instanceof Triangle) {
                         SafeMagicalImage.push("triangle");
@@ -146,20 +144,24 @@ namespace Magical_Image {
                     if (figur instanceof Heart) {
                         SafeMagicalImage.push("heart");
  
-                    }
+                    } 
+                    
+
+                    console.log(SafeMagicalImage);
                 }
+              
     
             }
-    
         let dataServer: string = JSON.stringify(SafeMagicalImage); //wandelt Array in einen JSON string um, damit der Server es lesen kann 
-        let query: URLSearchParams = new URLSearchParams(dataServer);
-        let response: Response = await fetch(url + "?safeImage&name=" + Picturedata + "&" + query.toString()); //(await) warten bis fetch die Daten von HouseData.json hat
+        let query: URLSearchParams = new URLSearchParams(dataServer); //query aus den SafeMagicalImage Daten kreieren 
+        let response: Response = await fetch(url + "?safeImage&name=" + Picturedata + "&" + query.toString()); //(await) warten bis fetch die Daten hat
         let texte: string = await response.text(); //text() liefert mir nicht direkt einen string, sondern nur die Promise einen string zu liefern, wenn sie die Daten hat (solage warten ->await)
         
+
+        
         console.log(texte);
-        console.log(Picturedata);
+        console.log(SafeMagicalImage);
         alert("Your Image with the " +  Picturedata +  "  "   +  "has been saved!");
-    
         }
     
 
@@ -231,33 +233,6 @@ namespace Magical_Image {
             }
         }
     }
-
-    // function deleteSymbol(_event: MouseEvent): void {
-
-    //     for (let Symbol of figures) {
-
-    //     let mousePosY: number = _event.clientY;
-    //     let mousePosX: number = _event.clientX;
-    //     let canvasRect: ClientRect | DOMRect = mainCanvas.getBoundingClientRect();
-
-    //     let offsetX: number = mousePosX - canvasRect.left;
-    //     let offsetY: number = mousePosY - canvasRect.top;
-
-    //     for (let figur of figures) { 
-
-    //         if (figur.position.x - figur.radius < offsetX &&
-    //             figur.position.x + figur.radius > offsetX &&
-    //             figur.position.y - figur.radius < offsetY &&
-    //             figur.position.y + figur.radius > offsetY) {
-
-    //             let index: number = figures.indexOf(figur);
-    //             figures.splice(index, 1);
-    //             console.log("Es funktioniert");
-    //         }
-    //     }
-       
-    // }}
-
 
 
     function chooseCanvas(_event: Event): void {
@@ -379,12 +354,13 @@ namespace Magical_Image {
 
         let target: HTMLButtonElement = <HTMLButtonElement>_event.target;
         let id: string = target.id;
+        // let position : Vector = new Vector(x,y);
       
 
         switch (id) {
             case "star":
-                let x: number = 10; 
-                let y: number = 50; 
+                let x: number = 0; 
+                let y: number = 0; 
                 let positionStar: Vector = new Vector(x, y);
                 let star:  Star = new Star(positionStar);
                 star.draw();
@@ -395,8 +371,8 @@ namespace Magical_Image {
                 break;
             case "circle":
 
-                let x1: number = 10; 
-                let y1: number = 50;
+                let x1: number = 0; 
+                let y1: number = 0;
                 let positionCircle: Vector = new Vector(x1, y1);
                 let circle: Circle = new Circle(positionCircle);
         
@@ -408,8 +384,8 @@ namespace Magical_Image {
                 
                 break; 
             case "heart":
-                let x2: number = 300; 
-                let y2: number = 100;
+                let x2: number = 0; 
+                let y2: number = 0;
             
                 let positionHeart: Vector = new Vector(x2, y2);
                 let heart:  Heart = new Heart(positionHeart);
@@ -421,8 +397,8 @@ namespace Magical_Image {
                 break; 
             case "triangle":
 
-                let x3: number = 600; 
-                let y3: number = 50;
+                let x3: number = 0; 
+                let y3: number = 0;
                     
                 let position: Vector = new Vector(x3, y3);
                 let triangle:  Triangle = new Triangle(position);

@@ -18,11 +18,10 @@ var Magical_Image;
             this.rotation += 0.5;
         }
         draw() {
-            Magical_Image.crc2.resetTransform();
             Magical_Image.crc2.save();
-            Magical_Image.crc2.scale(0.5, 0.5);
             Magical_Image.crc2.translate(this.position.x, this.position.y);
-            Magical_Image.crc2.rotate(this.rotation * Math.PI / 70);
+            Magical_Image.crc2.translate(-40, -40);
+            Magical_Image.crc2.scale(0.5, 0.5);
             Magical_Image.crc2.fillStyle = this.color;
             Magical_Image.crc2.beginPath();
             Magical_Image.crc2.moveTo(75, 40);
@@ -32,8 +31,8 @@ var Magical_Image;
             Magical_Image.crc2.bezierCurveTo(110, 102, 130, 80, 130, 62.5);
             Magical_Image.crc2.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
             Magical_Image.crc2.bezierCurveTo(85, 25, 75, 37, 75, 40);
-            Magical_Image.crc2.closePath();
             Magical_Image.crc2.fill();
+            Magical_Image.crc2.rotate(this.rotation * Math.PI / 70);
             this.rotate();
             Magical_Image.crc2.restore();
         }

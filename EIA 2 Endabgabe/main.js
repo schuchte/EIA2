@@ -256,10 +256,11 @@ var Magical_Image;
     function drawSymbol(_event) {
         let target = _event.target;
         let id = target.id;
+        // let position : Vector = new Vector(x,y);
         switch (id) {
             case "star":
-                let x = 10;
-                let y = 50;
+                let x = 0;
+                let y = 0;
                 let positionStar = new Magical_Image.Vector(x, y);
                 let star = new Magical_Image.Star(positionStar);
                 star.draw();
@@ -267,8 +268,8 @@ var Magical_Image;
                 Symbolcolor();
                 break;
             case "circle":
-                let x1 = 10;
-                let y1 = 50;
+                let x1 = 0;
+                let y1 = 0;
                 let positionCircle = new Magical_Image.Vector(x1, y1);
                 let circle = new Magical_Image.Circle(positionCircle);
                 circle.draw();
@@ -276,8 +277,8 @@ var Magical_Image;
                 Symbolcolor();
                 break;
             case "heart":
-                let x2 = 300;
-                let y2 = 100;
+                let x2 = 0;
+                let y2 = 0;
                 let positionHeart = new Magical_Image.Vector(x2, y2);
                 let heart = new Magical_Image.Heart(positionHeart);
                 heart.draw();
@@ -285,8 +286,8 @@ var Magical_Image;
                 Symbolcolor();
                 break;
             case "triangle":
-                let x3 = 600;
-                let y3 = 50;
+                let x3 = 0;
+                let y3 = 0;
                 let position = new Magical_Image.Vector(x3, y3);
                 let triangle = new Magical_Image.Triangle(position);
                 triangle.draw();

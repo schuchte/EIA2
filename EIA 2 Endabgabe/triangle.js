@@ -18,17 +18,17 @@ var Magical_Image;
             this.rotation += 0.5;
         }
         draw() {
-            Magical_Image.crc2.resetTransform();
             Magical_Image.crc2.save();
-            Magical_Image.crc2.scale(0.7, 0.7);
             Magical_Image.crc2.translate(this.position.x, this.position.y);
             Magical_Image.crc2.rotate(this.rotation * Math.PI / 70);
+            Magical_Image.crc2.scale(1.5, 1.5);
             Magical_Image.crc2.fillStyle = this.color;
             Magical_Image.crc2.beginPath();
-            Magical_Image.crc2.moveTo(50, 50);
-            Magical_Image.crc2.lineTo(100, 90);
-            Magical_Image.crc2.lineTo(100, 10);
-            Magical_Image.crc2.closePath();
+            Magical_Image.crc2.moveTo(0, 20);
+            Magical_Image.crc2.lineTo(-10, 20);
+            Magical_Image.crc2.lineTo(0, -20);
+            Magical_Image.crc2.lineTo(10, 20);
+            Magical_Image.crc2.lineTo(0, 20);
             Magical_Image.crc2.fill();
             this.rotate();
             Magical_Image.crc2.restore();

@@ -18,7 +18,7 @@ var Magical_Image;
             this.rotation += 0.5;
         }
         draw() {
-            Magical_Image.crc2.resetTransform();
+            // crc2.resetTransform();
             Magical_Image.crc2.save();
             Magical_Image.crc2.translate(this.position.x, this.position.y);
             Magical_Image.crc2.scale(0.3, 0.3);

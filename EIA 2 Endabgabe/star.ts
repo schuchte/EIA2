@@ -25,7 +25,7 @@ namespace Magical_Image {
 
         public draw(): void {
             
-            crc2.resetTransform();
+            // crc2.resetTransform();
             crc2.save();
             crc2.translate(this.position.x, this.position.y);  
             crc2.scale(0.3, 0.3); 

@@ -25,23 +25,18 @@ namespace Magical_Image {
 
         public draw(): void {
 
-            
-            crc2.resetTransform();
             crc2.save();
-            crc2.scale(0.7, 0.7); 
-
-            crc2.translate(this.position.x, this.position.y);
+            crc2.translate(this.position.x, this.position.y); 
             crc2.rotate(this.rotation * Math.PI / 70); 
-
+            crc2.scale(1.5, 1.5); 
             crc2.fillStyle = this.color;
-            
             crc2.beginPath();
-            crc2.moveTo(50, 50);
-            crc2.lineTo(100, 90);
-            crc2.lineTo(100, 10);
-            crc2.closePath();
+            crc2.moveTo(0, 20);
+            crc2.lineTo(-10, 20);
+            crc2.lineTo(0, -20);
+            crc2.lineTo(10, 20);
+            crc2.lineTo(0, 20);
             crc2.fill();
-
             this.rotate(); 
             crc2.restore(); 
             

@@ -1,0 +1,15 @@
+{
+  "name": "eia2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "start": "node EIA 2 Endabgabe/Server.js"
+  },
+  "author": "Tanja",
+  "license": "ISC",
+  "dependencies": {
+    "@types/mongodb": "^3.5.20",
+    "mongodb": "^3.5.8"
+  }
+}

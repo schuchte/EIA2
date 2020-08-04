@@ -1,14 +1,14 @@
 "use strict";
 var Magical_Image;
 (function (Magical_Image) {
-    let url = "https://fliegendesmonster.herokuapp.com";
+    let url = "https://fliegendesmonster.herokuapp.com/";
     let mainCanvas;
     let saveButton;
     let okayButton;
     let deleteButton;
     let backgroundColor;
     let form;
-    let symbols;
+    // let symbols: HTMLFieldSetElement;
     let figures = [];
     let SafeMagicalImage = [];
     let SafeBackgroundColor;
@@ -20,7 +20,7 @@ var Magical_Image;
     async function handleLoad(_event) {
         form = document.querySelector("fieldset#size");
         backgroundColor = document.querySelector("fieldset#color");
-        symbols = document.querySelector("fieldset#symbol");
+        // symbols = <HTMLFieldSetElement>document.querySelector("fieldset#symbol");
         mainCanvas = document.querySelector("canvas");
         Magical_Image.crc2 = mainCanvas.getContext("2d");
         deleteButton = document.querySelector("button#deleteimg");
@@ -86,14 +86,13 @@ var Magical_Image;
         let titles = document.querySelector("div#savedimages");
         let note = document.querySelector("div#showtitle");
         titles.innerHTML = "  " + note.innerText;
-        console.log(note.innerText);
         let Picturedata = note.innerText;
         console.log(Picturedata);
+        SafeMagicalImage.push(mainCanvas.width.toString(), mainCanvas.height.toString()); //speichert die Canvas Breite & Höhe
+        SafeMagicalImage.push(SafeBackgroundColor); //speichert die Farbe des Hintergrunds
         if (Picturedata != null) {
-            SafeMagicalImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
-            SafeMagicalImage.push(SafeBackgroundColor);
+            SafeMagicalImage.push(Picturedata); //speichert den Titel des Bildes
             for (let figur of figures) {
-                SafeMagicalImage.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
                 if (figur instanceof Magical_Image.Triangle) {
                     SafeMagicalImage.push("triangle");
                 }
@@ -106,14 +105,15 @@ var Magical_Image;
                 if (figur instanceof Magical_Image.Heart) {
                     SafeMagicalImage.push("heart");
                 }
+                console.log(SafeMagicalImage);
             }
         }
         let dataServer = JSON.stringify(SafeMagicalImage); //wandelt Array in einen JSON string um, damit der Server es lesen kann 
-        let query = new URLSearchParams(dataServer);
-        let response = await fetch(url + "?safeImage&name=" + Picturedata + "&" + query.toString()); //(await) warten bis fetch die Daten von HouseData.json hat
+        let query = new URLSearchParams(dataServer); //query aus den SafeMagicalImage Daten kreieren 
+        let response = await fetch(url + "?safeImage&name=" + Picturedata + "&" + query.toString()); //(await) warten bis fetch die Daten hat
         let texte = await response.text(); //text() liefert mir nicht direkt einen string, sondern nur die Promise einen string zu liefern, wenn sie die Daten hat (solage warten ->await)
         console.log(texte);
-        console.log(Picturedata);
+        console.log(SafeMagicalImage);
         alert("Your Image with the " + Picturedata + "  " + "has been saved!");
     }
     function pushTitle(_event) {
@@ -162,24 +162,6 @@ var Magical_Image;
             }
         }
     }
-    // function deleteSymbol(_event: MouseEvent): void {
-    //     for (let Symbol of figures) {
-    //     let mousePosY: number = _event.clientY;
-    //     let mousePosX: number = _event.clientX;
-    //     let canvasRect: ClientRect | DOMRect = mainCanvas.getBoundingClientRect();
-    //     let offsetX: number = mousePosX - canvasRect.left;
-    //     let offsetY: number = mousePosY - canvasRect.top;
-    //     for (let figur of figures) { 
-    //         if (figur.position.x - figur.radius < offsetX &&
-    //             figur.position.x + figur.radius > offsetX &&
-    //             figur.position.y - figur.radius < offsetY &&
-    //             figur.position.y + figur.radius > offsetY) {
-    //             let index: number = figures.indexOf(figur);
-    //             figures.splice(index, 1);
-    //             console.log("Es funktioniert");
-    //         }
-    //     }
-    // }}
     function chooseCanvas(_event) {
         let target = _event.target;
         let id = target.id;

@@ -22,7 +22,7 @@ var Magical_Image;
     async function connectToDatabase(_url) {
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options); //wir kriegen hier ne Art MongoShell die mit unserer Datenbank kommuniziert
-        await mongoClient.connect(); //MongoDB soll verbunden werden
+        await mongoClient.connect(); //durch connect wird MongoDB verbunden
         images = mongoClient.db("MagicImage").collection("images"); //Eingreifen und schon mal eine Datenbank (Househelp) und eine Collection darin (Orders) erstellen//Daten die in Ordern gespeichert wurden werden in der collection abgelegt. 
         console.log("Database connection", images != undefined); //wenn das geklappt hat Konsolenausgabe mit den Daten
     }
@@ -61,7 +61,7 @@ var Magical_Image;
         _response.end(); //Antwort wird verschickt
     }
     function retrieveOrder(_image) {
-        let jsonString = JSON.stringify(_image);
+        let jsonString = JSON.stringify(_image); //stringify wandelt Objekt in string um
         anyOrder.push(jsonString); // In das Array soll dann der jsonString gepusht werden 
     }
     function storePicture(_image) {

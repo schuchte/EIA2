@@ -34,7 +34,7 @@ export namespace Magical_Image {
 
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);  //wir kriegen hier ne Art MongoShell die mit unserer Datenbank kommuniziert
-        await mongoClient.connect(); //MongoDB soll verbunden werden
+        await mongoClient.connect(); //durch connect wird MongoDB verbunden
         images = mongoClient.db("MagicImage").collection("images"); //Eingreifen und schon mal eine Datenbank (Househelp) und eine Collection darin (Orders) erstellen//Daten die in Ordern gespeichert wurden werden in der collection abgelegt. 
         console.log("Database connection", images != undefined); //wenn das geklappt hat Konsolenausgabe mit den Daten
     }
@@ -82,7 +82,7 @@ export namespace Magical_Image {
     }
 
     function retrieveOrder(_image: Image): void {
-        let jsonString: string = JSON.stringify(_image); 
+        let jsonString: string = JSON.stringify(_image); //stringify wandelt Objekt in string um
         anyOrder.push(jsonString); // In das Array soll dann der jsonString gepusht werden 
     
     }

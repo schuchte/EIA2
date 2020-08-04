@@ -2,7 +2,7 @@ namespace Magical_Image {
     
     export let crc2: CanvasRenderingContext2D; 
 
-    let url: string = "https://fliegendesmonster.herokuapp.com";
+    let url: string = "https://fliegendesmonster.herokuapp.com/";
 
     let mainCanvas: HTMLCanvasElement; 
     let saveButton: HTMLButtonElement; 
@@ -10,7 +10,7 @@ namespace Magical_Image {
     let deleteButton: HTMLButtonElement;
     let backgroundColor: HTMLFieldSetElement;
     let form: HTMLFieldSetElement;
-    let symbols: HTMLFieldSetElement;
+    // let symbols: HTMLFieldSetElement;
     let figures: Symbol[] = [];
     let SafeMagicalImage: string[] = []; 
     let SafeBackgroundColor: string;
@@ -27,7 +27,7 @@ namespace Magical_Image {
 
         form = <HTMLFieldSetElement>document.querySelector("fieldset#size");
         backgroundColor = <HTMLFieldSetElement>document.querySelector("fieldset#color");
-        symbols = <HTMLFieldSetElement>document.querySelector("fieldset#symbol");
+        // symbols = <HTMLFieldSetElement>document.querySelector("fieldset#symbol");
         mainCanvas = <HTMLCanvasElement> document.querySelector("canvas"); 
         crc2 = <CanvasRenderingContext2D>mainCanvas.getContext("2d"); 
         deleteButton = <HTMLButtonElement>document.querySelector("button#deleteimg");

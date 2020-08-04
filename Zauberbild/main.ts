@@ -10,7 +10,7 @@ namespace Magical_Image {
     let deleteButton: HTMLButtonElement;
     let backgroundColor: HTMLFieldSetElement;
     let form: HTMLFieldSetElement;
-    // let symbols: HTMLFieldSetElement;
+    // let restore: HTMLInputElement;
     let figures: Symbol[] = [];
     let SafeMagicalImage: string[] = []; 
     let SafeBackgroundColor: string;
@@ -27,13 +27,13 @@ namespace Magical_Image {
 
         form = <HTMLFieldSetElement>document.querySelector("fieldset#size");
         backgroundColor = <HTMLFieldSetElement>document.querySelector("fieldset#color");
-        // symbols = <HTMLFieldSetElement>document.querySelector("fieldset#symbol");
         mainCanvas = <HTMLCanvasElement> document.querySelector("canvas"); 
         crc2 = <CanvasRenderingContext2D>mainCanvas.getContext("2d"); 
         deleteButton = <HTMLButtonElement>document.querySelector("button#deleteimg");
         saveButton = <HTMLButtonElement>document.querySelector("button#saveimg"); 
         okayButton = <HTMLButtonElement>document.querySelector("button#OK");
         deleteTitle = <HTMLButtonElement>document.querySelector("button#deletetitle");
+        // restore = <HTMLInputElement>document.querySelector("input#restore");
 
         form.addEventListener("click", chooseCanvas); 
         backgroundColor.addEventListener("click", chooseBackground);
@@ -50,24 +50,23 @@ namespace Magical_Image {
         mainCanvas.addEventListener("mousedown", pickSymbol);
         mainCanvas.addEventListener("mousemove", dragSymbol);
         mainCanvas.addEventListener("mouseup", placeSymbol);
+
+        // restore.addEventListener("change", restoreImage);
     }
 
 
     function pickSymbol(_event: MouseEvent): void {
         console.log("I was picked");
 
-        let mousePosY: number = _event.clientY; //Mouseposition 
+        let mousePosY: number = _event.clientY; 
         let mousePosX: number = _event.clientX;
-        let canvasRect: DOMRect = mainCanvas.getBoundingClientRect(); //
+        let canvasRect: DOMRect = mainCanvas.getBoundingClientRect(); 
 
-        //Client ist die Maus
-
-        let offsetX: number = mousePosX - canvasRect.left; //Symbolposition (x,y)
+        let offsetX: number = mousePosX - canvasRect.left; 
         let offsetY: number = mousePosY - canvasRect.top;
 
-        //ist da ein Objekt an der Stelle
 
-        for (let figur of figures) { //wenn für die Variavle Symbol von figures  was gefunden wurde
+        for (let figur of figures) { 
 
             if (figur.position.x - figur.radius < offsetX && //
                 figur.position.x + figur.radius > offsetX &&
@@ -77,8 +76,8 @@ namespace Magical_Image {
                 dragDrop =  true;
 
                 let index: number = figures.indexOf(figur);
-                figures.splice(index, 1); //Symbol soll aus Array gelöscht werden durch splice
-                objectDragDrop = figur; //das Symbol wird als objectDragDrop gespeichert
+                figures.splice(index, 1); 
+                objectDragDrop = figur; 
                 return;
             }
         }
@@ -87,9 +86,9 @@ namespace Magical_Image {
     function placeSymbol(_event: MouseEvent): void {
         console.log("I was placed");
 
-        if (dragDrop == true) { //Dragdrop true -->Dragdrop passiert noch  
-            dragDrop = false; //dragdrop auf false setzen weil Dragdrop enden soll 
-            figures.push(objectDragDrop); //dragdropobjekt soll wieder in das ursprüngliche Array gepusht werden
+        if (dragDrop == true) { 
+            dragDrop = false; 
+            figures.push(objectDragDrop);
         }
 
     }
@@ -98,7 +97,7 @@ namespace Magical_Image {
         console.log("I was dragged");
 
         if (dragDrop == true) {
-         objectDragDrop.position.x = _event.clientX - mainCanvas.getBoundingClientRect().left; //ObjectDragdrop mit der position x und y soll dem ClientCursor folgen, solange er im Canvas ist -->get BoundinClientRect left und top
+         objectDragDrop.position.x = _event.clientX - mainCanvas.getBoundingClientRect().left; 
          objectDragDrop.position.y = _event.clientY - mainCanvas.getBoundingClientRect().top;
         }
     }
@@ -120,12 +119,10 @@ namespace Magical_Image {
         let Picturedata: string = note.innerText;
 
         console.log(Picturedata);
-        SafeMagicalImage.push(mainCanvas.width.toString(), mainCanvas.height.toString()); //speichert die Canvas Breite & Höhe
-        SafeMagicalImage.push(SafeBackgroundColor); //speichert die Farbe des Hintergrunds
-
+        SafeMagicalImage.push(mainCanvas.width.toString(), mainCanvas.height.toString()); 
         if (Picturedata != null) {
   
-              SafeMagicalImage.push(Picturedata); //speichert den Titel des Bildes
+              SafeMagicalImage.push(Picturedata); 
               
               for (let figur of figures) {
     
@@ -163,6 +160,18 @@ namespace Magical_Image {
         console.log(SafeMagicalImage);
         alert("Your Image with the " +  Picturedata +  "  "   +  "has been saved!");
         }
+
+
+    // async function restoreImage(_response: string): Promise<void>{
+        //Wenn die Input Eingabe des Users != 0 ist, dann wird eine Request mit dem eingegebenen Titel an den Server gesendet
+        //der Server empfängt diese Request und gebt den Titel an die Database weiter
+        //die Database sucht die entsprechende Collection ("images") und darin dann den Titel, der in der Funktion saveIage bereits als Array (SafeMagicalImage) abgespeichert wurde
+        //Findet die Datenbank den Titel NICHT, dann kommt eine entsprechende Response an den Server, dieser wiederum gibt dem Client dieselbe Response und es poppt ein alert mit ("Bildtitel konnte nicht gefunden werden") beim Cutsomer auf
+        //Findet die Datenbank den Titel, dann sendet diese die gespeicherten Bilddaten zum Server, der Server empfängt diese Daten und sendet dem Client eine Response
+        //der Client hat nun die Bilddaten und kann das Bild wiederherstellen, sodass es für den Customer im Canvas sichtbar ist
+        //Der Customer kann das Bild nun weiterbearbeiten und wieder abspeichern etc. 
+
+    // }
     
 
     function pushTitle(_event: MouseEvent): void {
@@ -180,8 +189,7 @@ namespace Magical_Image {
 
     function Symbolcolor(): void {
 
-        let choosenSymbol: any = figures[figures.length - 1]; //das letzte Symbol das gepusht wurde in Array
-
+        let choosenSymbol: any = figures[figures.length - 1]; 
         var Color = prompt("Enter the color of your Symbol");
 
         for (let Symbol of figures) {
@@ -215,8 +223,6 @@ namespace Magical_Image {
 
 
         for (let figure of figures) {
-            //symbol.position.x = mousePosX;
-            //symbol.position.y = mousePosY;
 
             if (figure.position.x - figure.radius < offsetX &&
                 figure.position.x + figure.radius > offsetX &&
@@ -354,13 +360,12 @@ namespace Magical_Image {
 
         let target: HTMLButtonElement = <HTMLButtonElement>_event.target;
         let id: string = target.id;
-        // let position : Vector = new Vector(x,y);
-      
-
+        let x: number = 0; 
+        let y: number = 0; 
+        
         switch (id) {
             case "star":
-                let x: number = 0; 
-                let y: number = 0; 
+                
                 let positionStar: Vector = new Vector(x, y);
                 let star:  Star = new Star(positionStar);
                 star.draw();
@@ -371,9 +376,7 @@ namespace Magical_Image {
                 break;
             case "circle":
 
-                let x1: number = 0; 
-                let y1: number = 0;
-                let positionCircle: Vector = new Vector(x1, y1);
+                let positionCircle: Vector = new Vector(x, y);
                 let circle: Circle = new Circle(positionCircle);
         
                 circle.draw();
@@ -384,10 +387,8 @@ namespace Magical_Image {
                 
                 break; 
             case "heart":
-                let x2: number = 0; 
-                let y2: number = 0;
-            
-                let positionHeart: Vector = new Vector(x2, y2);
+               
+                let positionHeart: Vector = new Vector(x, y);
                 let heart:  Heart = new Heart(positionHeart);
                 heart.draw();
                 figures.push(heart);
@@ -397,10 +398,7 @@ namespace Magical_Image {
                 break; 
             case "triangle":
 
-                let x3: number = 0; 
-                let y3: number = 0;
-                    
-                let position: Vector = new Vector(x3, y3);
+                let position: Vector = new Vector(x, y);
                 let triangle:  Triangle = new Triangle(position);
                 triangle.draw();
                 

@@ -28,7 +28,7 @@ div#showtitle{
 
 p#info{
     position: relative;
-    left:655px;
+    left:675px;
     font-size: 10px;
     font-family: 'Courier New', Courier, monospace;
 }
@@ -204,6 +204,16 @@ button#OK:hover{
 
 fieldset#title{
     width: 176px;
+}
+
+input#restore{
+    position: absolute;
+    left:700px;
+    border-radius: 3px;
+}
+
+input#title1{
+    border-radius: 3px;
 }
 
 button#deletetitle {
